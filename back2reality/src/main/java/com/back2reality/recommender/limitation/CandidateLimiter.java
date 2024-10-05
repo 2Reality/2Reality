@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author FLIGHT
  */
-public interface CandidatesLimiter<TItem> {
+public interface CandidateLimiter<TItem> {
 
   List<TItem> limit(List<TItem> candidates, RecommenderContext recommenderContext);
 }

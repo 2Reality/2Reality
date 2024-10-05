@@ -30,6 +30,7 @@ public class RandomCandidateSelector<TItem> implements CandidateSelector<TItem> 
   private TItem generateRandomCandidate() {
     return itemFactory.create(
       RandomUtils.generateInteger(1_000_000),
+      RandomUtils.generatePrettyRandomString(16),
       RandomUtils.generatePrettyRandomString(16)
     );
   }

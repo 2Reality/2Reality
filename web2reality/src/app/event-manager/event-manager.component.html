@@ -1,0 +1,24 @@
+<h3>Event manager</h3>
+<p>{{message}}</p>
+
+<form [formGroup]="eventForm" (ngSubmit)="createEvent()">
+  <div>
+    <input type="text" formControlName="title" id="title" placeholder="title">
+    <input type="text" formControlName="description" id="description" placeholder="description">
+  </div>
+
+  <input formControlName="start" type="datetime-local" placeholder="dd-mm-yyyy">
+  <input formControlName="finish" type="datetime-local" placeholder="dd-mm-yyyy">
+
+  <div>
+    <button type="submit">Create event</button>
+  </div>
+</form>
+
+<h3>Event recommendation simulation</h3>
+<button (click)="recommendEvents()">Recommend</button>
+<div *ngFor="let trEvent of recommenderResult">
+  <p>{{trEvent | json}}</p>
+  <button (click)="deleteEvent(trEvent.id ? trEvent.id : 0)">Delete</button>
+</div>
+

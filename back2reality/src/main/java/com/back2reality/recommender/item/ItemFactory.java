@@ -5,9 +5,7 @@ package com.back2reality.recommender.item;
  */
 public interface ItemFactory<TItem> {
 
-  TItem create(long id, String title);
-
-  TItem create(long id, String title, double score);
+  TItem create(long id, String title, String description);
 
   TItem create(TItem item, double score);
 }

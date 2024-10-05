@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author FLIGHT
  */
-public class BaseCandidateLimiter<TItem> implements CandidatesLimiter<TItem> {
+public class BaseCandidateLimiter<TItem> implements CandidateLimiter<TItem> {
 
   @Override
   public List<TItem> limit(List<TItem> candidates, RecommenderContext recommenderContext) {

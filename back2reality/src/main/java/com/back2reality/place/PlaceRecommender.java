@@ -1,7 +1,7 @@
 package com.back2reality.place;
 
 import com.back2reality.recommender.*;
-import com.back2reality.recommender.limitation.CandidatesLimiter;
+import com.back2reality.recommender.limitation.CandidateLimiter;
 import com.back2reality.recommender.logging.RecommenderLogger;
 import com.back2reality.recommender.ranking.CandidateRanker;
 import com.back2reality.recommender.scoring.CandidateScorer;
@@ -16,9 +16,9 @@ public class PlaceRecommender extends Recommender<Place> {
     CandidateSelector<Place> candidateSelector,
     CandidateScorer<Place> candidateScorer,
     CandidateRanker<Place> candidateRanker,
-    CandidatesLimiter<Place> candidatesLimiter,
+    CandidateLimiter<Place> candidateLimiter,
     RecommenderLogger<Place> recommenderLogger)
   {
-    super(candidateSelector, candidateScorer, candidateRanker, candidatesLimiter, recommenderLogger);
+    super(candidateSelector, candidateScorer, candidateRanker, candidateLimiter, recommenderLogger);
   }
 }

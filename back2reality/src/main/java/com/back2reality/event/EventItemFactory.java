@@ -5,22 +5,24 @@ import com.back2reality.recommender.item.ItemFactory;
 /**
  * @author FLIGHT
  */
-public class EventItemFactory implements ItemFactory<Event> {
+public class EventItemFactory implements ItemFactory<TREvent> {
 
   @Override
-  public Event create(long id, String title) {
-    return new Event(id, title, 0.0);
+  public TREvent create(
+    long id,
+    String title,
+    String description) {
+    return new TREvent(id, title, description);
   }
 
   @Override
-  public Event create(long id, String title, double score) {
-    return new Event(id, title, score);
+  public TREvent create(TREvent event, double score) {
+    return new TREvent(
+      event.id(),
+      event.title(),
+      event.description(),
+      event.start(),
+      event.finish(),
+      score);
   }
-
-  @Override
-  public Event create(Event event, double score) {
-    return new Event(event.id(), event.title(), score);
-  }
-
-
 }

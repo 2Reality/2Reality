@@ -5,11 +5,12 @@ plugins {
 }
 
 group = 'com'
-version = '0.0.1-SNAPSHOT'
+version = 'latest'
+sourceCompatibility = '17'
 
-java {
-  toolchain {
-    languageVersion = JavaLanguageVersion.of(17)
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
   }
 }
 

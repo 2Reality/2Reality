@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+
+  web2reality:
+    build: web2reality/
+    networks:
+      - 2-reality-network
+    ports:
+      - "80:80"
+
+  back2reality:
+    build: back2reality/
+    ports:
+      - "8080:8080"
+    networks:
+      - 2-reality-network
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    container_name: postgres2reality
+    restart: always
+    networks:
+      - 2-reality-network
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "0023"
+      POSTGRES_DB: "2Reality"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+
+networks:
+  2-reality-network:

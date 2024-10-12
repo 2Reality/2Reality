@@ -1,0 +1,34 @@
+<app-header
+  [activePage]="'Home'"
+></app-header>
+<main>
+
+  <section class="py-3 text-center container">
+    <div class="row py-lg-4">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">About us</h1>
+        <p class="lead text-muted"></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container marketing">
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+      <app-member [name]="'Michael Fedorenko'"
+                  [about]="'Founder, CEO, Lead, Backend Developer, Frontend Developer, Designer, Systems architect, ' +
+                   'Product Manager, Genius, Billionaire, Playboy, Philanthropist '">
+
+      </app-member>
+      <app-member [name]="'...'"></app-member>
+      <app-member [name]="'...'"></app-member>
+      <app-member [name]="'...'"></app-member>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+  </div>
+</main>
+

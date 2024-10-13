@@ -1,0 +1,31 @@
+<app-header></app-header>
+<h3>Human manager</h3>
+<p>{{message}}</p>
+
+<form [formGroup]="humanForm" (ngSubmit)="createHuman()">
+  <div>
+    <input type="text" formControlName="fullname" id="fullname" placeholder="fullname">
+    <input type="text" formControlName="nickname" id="nickname" placeholder="nickname">
+  </div>
+
+  <div>
+    <input type="text" formControlName="age" id="age" placeholder="age">
+    <input type="text" formControlName="sex" id="sex" placeholder="sex">
+  </div>
+
+  <div>
+    <input formControlName="geo" id="geo" placeholder="geo">
+  </div>
+
+  <div>
+    <button type="submit">Create human</button>
+  </div>
+</form>
+
+<h3>All Humans</h3>
+<button (click)="recommendHumans()">Update</button>
+<div *ngFor="let humanItem of recommenderResult">
+  <p>{{humanItem | json}}</p>
+  <button (click)="deleteHuman(humanItem.id ? humanItem.id : 0)">Delete</button>
+</div>
+

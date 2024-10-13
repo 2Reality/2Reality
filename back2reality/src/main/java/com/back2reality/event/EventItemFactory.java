@@ -7,22 +7,11 @@ import java.time.LocalDateTime;
 /**
  * @author FLIGHT
  */
-public class EventItemFactory implements ItemFactory<TREvent> {
+public class EventItemFactory implements ItemFactory<EventItem> {
 
   @Override
-  public TREvent create(
-    long id,
-    String title,
-    String description,
-    LocalDateTime start,
-    LocalDateTime end,
-    String geo) {
-    return new TREvent(id, title, description, start, end, geo);
-  }
-
-  @Override
-  public TREvent create(TREvent event, double score) {
-    return new TREvent(
+  public EventItem createWithScore(EventItem event, double score) {
+    return new EventItem(
       event.id(),
       event.title(),
       event.description(),

@@ -20,7 +20,7 @@ public class RandomCandidateScorer<TItem> implements CandidateScorer<TItem> {
   @Override
   public List<TItem> score(List<TItem> candidates, RecommenderContext recommenderContext) {
     return candidates.stream()
-      .map(candidate -> itemFactory.create(candidate, RandomUtils.generatePrettyDouble(1.00)))
+      .map(candidate -> itemFactory.createWithScore(candidate, RandomUtils.generatePrettyDouble(1.00)))
       .toList();
   }
 }

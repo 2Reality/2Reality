@@ -3,5 +3,6 @@ package com.back2reality.human;
 /**
  * @author FLIGHT
  */
-public class Human {
+public enum Sex {
+  MALE, FEMALE
 }

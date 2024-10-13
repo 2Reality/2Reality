@@ -1,7 +1,7 @@
 package com.back2reality.storage.mapper;
 
 import com.back2reality.event.EventForm;
-import com.back2reality.event.TREvent;
+import com.back2reality.event.EventItem;
 import com.back2reality.storage.entities.Event;
 
 /**
@@ -9,15 +9,15 @@ import com.back2reality.storage.entities.Event;
  */
 public class EventMapper {
 
-  public TREvent toEvent(Event event) {
-    return new TREvent(
+  public EventItem toEventItem(Event event) {
+    return new EventItem(
       event.getId(),
       event.getTitle(),
       event.getDescription(),
       event.getStart(),
       event.getFinish(),
       event.getGeo(),
-      TREvent.DEFAULT_SCORE
+      EventItem.DEFAULT_SCORE
     );
   }
 

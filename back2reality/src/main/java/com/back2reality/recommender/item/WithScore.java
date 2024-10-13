@@ -5,5 +5,6 @@ package com.back2reality.recommender.item;
  */
 public interface WithScore {
 
+  double DEFAULT_SCORE = 0.0;
   double score();
 }

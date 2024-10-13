@@ -5,7 +5,6 @@ import com.back2reality.recommender.logging.RecommenderLogger;
 import com.back2reality.recommender.logging.RecommenderStageLogger;
 import com.back2reality.recommender.ranking.ScoreCandidateRanker;
 import com.back2reality.recommender.scoring.RandomCandidateScorer;
-import com.back2reality.recommender.selection.RandomCandidateSelector;
 import com.back2reality.recommender.selection.StorageCandidateSelector;
 import com.back2reality.storage.dao.EventStorage;
 import com.back2reality.storage.mapper.EventMapper;
@@ -26,11 +25,6 @@ public class EventRecommenderContextConfiguration {
   }
 
   @Bean
-  public RandomCandidateSelector<TREvent> randomEventCandidateSelector(EventItemFactory eventItemFactory) {
-    return new RandomCandidateSelector<>(eventItemFactory);
-  }
-
-  @Bean
   public EventMapper eventMapper() {
     return new EventMapper();
   }
@@ -41,37 +35,37 @@ public class EventRecommenderContextConfiguration {
   }
 
   @Bean
-  public StorageCandidateSelector<TREvent> storageCandidateSelector(EventStorage eventStorage) {
+  public StorageCandidateSelector<EventItem> storageCandidateSelector(EventStorage eventStorage) {
     return new StorageCandidateSelector<>(eventStorage);
   }
 
   @Bean
-  public RandomCandidateScorer<TREvent> randomEventCandidateScorer(EventItemFactory eventItemFactory) {
+  public RandomCandidateScorer<EventItem> randomEventCandidateScorer(EventItemFactory eventItemFactory) {
     return new RandomCandidateScorer<>(eventItemFactory);
   }
 
   @Bean
-  public ScoreCandidateRanker<TREvent> scoreEventCandidateRanker() {
+  public ScoreCandidateRanker<EventItem> scoreEventCandidateRanker() {
     return new ScoreCandidateRanker<>();
   }
 
   @Bean
-  public BaseCandidateLimiter<TREvent> baseEventCandidateLimiter() {
+  public BaseCandidateLimiter<EventItem> baseEventCandidateLimiter() {
     return new BaseCandidateLimiter<>();
   }
 
   @Bean
-  public RecommenderLogger<TREvent> eventRecommenderLogger() {
+  public RecommenderLogger<EventItem> eventRecommenderLogger() {
     return new RecommenderStageLogger<>();
   }
 
   @Bean
   public EventRecommender eventRecommender(
-    StorageCandidateSelector<TREvent> storageCandidateSelector,
-    RandomCandidateScorer<TREvent> randomEventCandidateScorer,
-    ScoreCandidateRanker<TREvent> scoreEventCandidateRanker,
-    BaseCandidateLimiter<TREvent> baseEventCandidateLimiter,
-    RecommenderLogger<TREvent> eventRecommenderLogger)
+    StorageCandidateSelector<EventItem> storageCandidateSelector,
+    RandomCandidateScorer<EventItem> randomEventCandidateScorer,
+    ScoreCandidateRanker<EventItem> scoreEventCandidateRanker,
+    BaseCandidateLimiter<EventItem> baseEventCandidateLimiter,
+    RecommenderLogger<EventItem> eventRecommenderLogger)
   {
     return new EventRecommender(
       storageCandidateSelector,

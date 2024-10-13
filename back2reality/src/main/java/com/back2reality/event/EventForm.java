@@ -9,6 +9,7 @@ public record EventForm(
   String title,
   String description,
   LocalDateTime start,
-  LocalDateTime finish) {
+  LocalDateTime finish,
+  String geo) {
 }
 

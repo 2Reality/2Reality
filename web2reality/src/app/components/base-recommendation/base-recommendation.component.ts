@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {Recommendation} from "../../entities/recommendation";
 
 @Component({
   selector: 'app-base-recommendation',
@@ -7,7 +8,7 @@ import {Component, Input} from '@angular/core';
 })
 export class BaseRecommendationComponent {
 
-  @Input() recommendations: Array<any>
+  @Input() recommendations: Array<Recommendation>
   @Input() title: string
 
 }

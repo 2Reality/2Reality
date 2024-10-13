@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {EventService} from "../../service/event.service";
+import {Recommendation} from "../../entities/recommendation";
 
 @Component({
   selector: 'app-events',
@@ -7,6 +9,12 @@ import { Component } from '@angular/core';
 })
 export class EventsComponent {
 
-  recommendations: Array<any> = new Array<any>(1, 2, 3, 4, 5, 6, 7, 8, 9)
   title = 'events'
+  recommenderResult: Array<Recommendation>
+  constructor(private eventService: EventService) {
+    this.eventService.recommendEvents().subscribe(response => {
+      console.log(response)
+      this.recommenderResult = response
+    })
+  }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Recommendation} from "../../entities/recommendation";
 
 @Component({
   selector: 'app-people',
@@ -7,6 +8,14 @@ import { Component } from '@angular/core';
 })
 export class PeopleComponent {
 
-  recommendations: Array<any> = new Array<any>(1, 2, 3, 4, 5, 6, 7, 8, 9)
+  recommendations: Array<Recommendation> = this.recommendationMock();
   title = 'people'
+
+  recommendationMock() : Array<Recommendation> {
+    return new Array<Recommendation>(
+      {id: 1, description: "", finish: undefined, start: undefined, title: "Human mock 1"},
+      {id: 2, description: "", finish: undefined, start: undefined, title: "Human mock 2"},
+      {id: 3, description: "", finish: undefined, start: undefined, title: "Human mock 3"}
+    )
+  }
 }

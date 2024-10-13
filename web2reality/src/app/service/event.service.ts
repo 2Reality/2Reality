@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {TREvent} from "../entities/event";
+import {Recommendation} from "../entities/recommendation";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ export class EventService {
   constructor(private httpClient: HttpClient) {
   }
 
-  createEvent(event: TREvent): Observable<TREvent> {
-    return this.httpClient.post<TREvent>(this.url + '/create', event)
+  createEvent(event: Recommendation): Observable<Recommendation> {
+    return this.httpClient.post<Recommendation>(this.url + '/create', event)
   }
 
   recommendEvents(): Observable<Array<any>> {

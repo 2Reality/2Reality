@@ -24,13 +24,17 @@ public class Event {
 
   private LocalDateTime finish;
 
+//  temporarily string, will need to be replaced with a specialized data type
+  private String geo;
+
   public Event() {}
 
-  public Event(String title, String description, LocalDateTime start, LocalDateTime finish) {
+  public Event(String title, String description, LocalDateTime start, LocalDateTime finish, String geo) {
     this.title = title;
     this.description = description;
     this.start = start;
     this.finish = finish;
+    this.geo = geo;
   }
 
   public long getId() {
@@ -71,5 +75,13 @@ public class Event {
 
   public void setFinish(LocalDateTime finish) {
     this.finish = finish;
+  }
+
+  public String getGeo() {
+    return geo;
+  }
+
+  public void setGeo(String geo) {
+    this.geo = geo;
   }
 }

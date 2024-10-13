@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {EventManagerComponent} from "./event-manager/event-manager.component";
+import {EventManagerComponent} from "./admin/event-manager.component";
 import {HomeComponent} from "./home/home.component";
 import {EventsComponent} from "./pages/events/events.component";
 import {PeopleComponent} from "./pages/people/people.component";
@@ -14,10 +14,9 @@ const routes: Routes = [
   {path: 'events', component: EventsComponent},
   {path: 'people', component: PeopleComponent},
   {path: 'places', component: PlacesComponent},
-  {path: 'event-manager', component: EventManagerComponent},
   {path: 'sign-up', component: SignUpComponent},
-  {path: 'login', component: LoginComponent}
-
+  {path: 'login', component: LoginComponent},
+  {path: 'admin', component: EventManagerComponent},
 ];
 
 @NgModule({

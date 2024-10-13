@@ -2,6 +2,8 @@ package com.back2reality.event;
 
 import com.back2reality.recommender.item.ItemFactory;
 
+import java.time.LocalDateTime;
+
 /**
  * @author FLIGHT
  */
@@ -11,8 +13,11 @@ public class EventItemFactory implements ItemFactory<TREvent> {
   public TREvent create(
     long id,
     String title,
-    String description) {
-    return new TREvent(id, title, description);
+    String description,
+    LocalDateTime start,
+    LocalDateTime end,
+    String geo) {
+    return new TREvent(id, title, description, start, end, geo);
   }
 
   @Override
@@ -23,6 +28,7 @@ public class EventItemFactory implements ItemFactory<TREvent> {
       event.description(),
       event.start(),
       event.finish(),
+      event.geo(),
       score);
   }
 }

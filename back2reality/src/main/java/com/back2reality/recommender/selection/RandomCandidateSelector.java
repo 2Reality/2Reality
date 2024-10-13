@@ -4,6 +4,7 @@ import com.back2reality.recommender.context.RecommenderContext;
 import com.back2reality.recommender.item.ItemFactory;
 import com.back2reality.utils.RandomUtils;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,9 +29,13 @@ public class RandomCandidateSelector<TItem> implements CandidateSelector<TItem> 
   }
 
   private TItem generateRandomCandidate() {
+    LocalDateTime dateTime = LocalDateTime.now().plusDays(RandomUtils.generateInteger(10));
     return itemFactory.create(
       RandomUtils.generateInteger(1_000_000),
       RandomUtils.generatePrettyRandomString(16),
+      RandomUtils.generatePrettyRandomString(16),
+      dateTime,
+      dateTime.plusHours(1),
       RandomUtils.generatePrettyRandomString(16)
     );
   }

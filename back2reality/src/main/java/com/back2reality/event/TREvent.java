@@ -13,14 +13,18 @@ public record TREvent(
   String description,
   LocalDateTime start,
   LocalDateTime finish,
+  String geo,
   double score)
   implements WithScore {
 
   public TREvent(
     long id,
     String title,
-    String description) {
-    this(id, title, description, LocalDateTime.now(), LocalDateTime.now(), DEFAULT_SCORE);
+    String description,
+    LocalDateTime start,
+    LocalDateTime finish,
+    String geo) {
+    this(id, title, description, start, finish, geo, DEFAULT_SCORE);
   }
 
   public static double DEFAULT_SCORE = 0.0;

@@ -16,6 +16,7 @@ public class EventMapper {
       event.getDescription(),
       event.getStart(),
       event.getFinish(),
+      event.getGeo(),
       TREvent.DEFAULT_SCORE
     );
   }
@@ -25,7 +26,8 @@ public class EventMapper {
       eventForm.title(),
       eventForm.description(),
       eventForm.start(),
-      eventForm.finish()
+      eventForm.finish(),
+      eventForm.geo()
     );
   }
 }

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {TREvent} from "../entities/event";
+import {Recommendation} from "../entities/recommendation";
 import {EventService} from "../service/event.service";
 
 @Component({
@@ -12,7 +12,7 @@ export class EventManagerComponent {
 
   message: string
   eventForm: FormGroup
-  recommenderResult: Array<TREvent>
+  recommenderResult: Array<Recommendation>
 
   constructor(private eventService: EventService, public formBuilder: FormBuilder) {
     this.initForm()
@@ -23,17 +23,19 @@ export class EventManagerComponent {
       title: [''],
       description: [''],
       start: [''],
-      finish: ['']
+      finish: [''],
+      geo: ['']
     });
   }
 
   createEvent() {
     let values = this.eventForm.value;
-    let trEvent: TREvent = {
+    let trEvent: Recommendation = {
       title: values.title,
       description: values.description,
       start: values.start,
-      finish: values.finish
+      finish: values.finish,
+      geo: values.geo
     }
 
     this.eventService.createEvent(trEvent).subscribe(response => {

@@ -1,3 +1,4 @@
+<app-header></app-header>
 <h3>Event manager</h3>
 <p>{{message}}</p>
 
@@ -11,12 +12,16 @@
   <input formControlName="finish" type="datetime-local" placeholder="dd-mm-yyyy">
 
   <div>
+    <input formControlName="geo" id="geo" placeholder="geo">
+  </div>
+
+  <div>
     <button type="submit">Create event</button>
   </div>
 </form>
 
-<h3>Event recommendation simulation</h3>
-<button (click)="recommendEvents()">Recommend</button>
+<h3>All events</h3>
+<button (click)="recommendEvents()">Update</button>
 <div *ngFor="let trEvent of recommenderResult">
   <p>{{trEvent | json}}</p>
   <button (click)="deleteEvent(trEvent.id ? trEvent.id : 0)">Delete</button>

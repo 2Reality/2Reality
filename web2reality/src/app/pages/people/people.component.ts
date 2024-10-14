@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Recommendation} from "../../entities/recommendation";
+import {HumanService} from "../../service/human.service";
 
 @Component({
   selector: 'app-people',
@@ -8,14 +9,13 @@ import {Recommendation} from "../../entities/recommendation";
 })
 export class PeopleComponent {
 
-  recommendations: Array<Recommendation> = this.recommendationMock();
+  recommenderResult: Array<Recommendation>;
   title = 'people'
 
-  recommendationMock() : Array<Recommendation> {
-    return new Array<Recommendation>(
-      {id: 1, description: "", finish: undefined, start: undefined, title: "Human mock 1"},
-      {id: 2, description: "", finish: undefined, start: undefined, title: "Human mock 2"},
-      {id: 3, description: "", finish: undefined, start: undefined, title: "Human mock 3"}
-    )
+  constructor(private humanService: HumanService) {
+    this.humanService.recommendHumans().subscribe(response => {
+      console.log(response)
+      this.recommenderResult = response
+    })
   }
 }

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {Recommendation} from "../entities/recommendation";
-import {EventService} from "../service/event.service";
+import {Recommendation} from "../../entities/recommendation";
+import {EventService} from "../../service/event.service";
 
 @Component({
   selector: 'app-event-manager',
@@ -30,7 +30,7 @@ export class EventManagerComponent {
 
   createEvent() {
     let values = this.eventForm.value;
-    let trEvent: Recommendation = {
+    let eventItem: Recommendation = {
       title: values.title,
       description: values.description,
       start: values.start,
@@ -38,7 +38,7 @@ export class EventManagerComponent {
       geo: values.geo
     }
 
-    this.eventService.createEvent(trEvent).subscribe(response => {
+    this.eventService.createEvent(eventItem).subscribe(response => {
       console.log(response)
       this.recommendEvents()
       this.message = "event " + response.title + " added";

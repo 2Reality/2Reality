@@ -10,14 +10,14 @@ import com.back2reality.recommender.selection.CandidateSelector;
 /**
  * @author FLIGHT
  */
-public class EventRecommender extends Recommender<TREvent> {
+public class EventRecommender extends Recommender<EventItem> {
 
   public EventRecommender(
-    CandidateSelector<TREvent> candidateSelector,
-    CandidateScorer<TREvent> candidateScorer,
-    CandidateRanker<TREvent> candidateRanker,
-    CandidateLimiter<TREvent> candidateLimiter,
-    RecommenderLogger<TREvent> recommenderLogger)
+    CandidateSelector<EventItem> candidateSelector,
+    CandidateScorer<EventItem> candidateScorer,
+    CandidateRanker<EventItem> candidateRanker,
+    CandidateLimiter<EventItem> candidateLimiter,
+    RecommenderLogger<EventItem> recommenderLogger)
   {
     super(candidateSelector, candidateScorer, candidateRanker, candidateLimiter, recommenderLogger);
   }

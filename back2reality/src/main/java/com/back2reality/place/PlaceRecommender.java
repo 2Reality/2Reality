@@ -10,14 +10,14 @@ import com.back2reality.recommender.selection.CandidateSelector;
 /**
  * @author FLIGHT
  */
-public class PlaceRecommender extends Recommender<Place> {
+public class PlaceRecommender extends Recommender<PlaceItem> {
 
   public PlaceRecommender(
-    CandidateSelector<Place> candidateSelector,
-    CandidateScorer<Place> candidateScorer,
-    CandidateRanker<Place> candidateRanker,
-    CandidateLimiter<Place> candidateLimiter,
-    RecommenderLogger<Place> recommenderLogger)
+    CandidateSelector<PlaceItem> candidateSelector,
+    CandidateScorer<PlaceItem> candidateScorer,
+    CandidateRanker<PlaceItem> candidateRanker,
+    CandidateLimiter<PlaceItem> candidateLimiter,
+    RecommenderLogger<PlaceItem> recommenderLogger)
   {
     super(candidateSelector, candidateScorer, candidateRanker, candidateLimiter, recommenderLogger);
   }

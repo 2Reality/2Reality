@@ -1,7 +1,7 @@
 package com.back2reality.storage.dao;
 
 import com.back2reality.event.EventForm;
-import com.back2reality.event.TREvent;
+import com.back2reality.event.EventItem;
 import com.back2reality.storage.mapper.EventMapper;
 import com.back2reality.storage.repository.EventRepository;
 import com.back2reality.utils.StreamUtils;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author FLIGHT
  */
-public class EventStorage implements CandidateStorage<TREvent> {
+public class EventStorage implements CandidateStorage<EventItem> {
 
   private final Logger logger = LoggerFactory.getLogger(EventStorage.class);
 
@@ -27,9 +27,9 @@ public class EventStorage implements CandidateStorage<TREvent> {
   }
 
   @Override
-  public List<TREvent> getAllCandidates() {
+  public List<EventItem> getAllCandidates() {
     return StreamUtils.toStream(eventRepository.findAll())
-      .map(eventMapper::toEvent)
+      .map(eventMapper::toEventItem)
       .toList();
   }
 

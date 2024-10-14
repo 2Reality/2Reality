@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 /**
  * @author FLIGHT
  */
-public record TREvent(
+public record EventItem(
   long id,
   String title,
   String description,
@@ -17,7 +17,7 @@ public record TREvent(
   double score)
   implements WithScore {
 
-  public TREvent(
+  public EventItem(
     long id,
     String title,
     String description,
@@ -26,8 +26,6 @@ public record TREvent(
     String geo) {
     this(id, title, description, start, finish, geo, DEFAULT_SCORE);
   }
-
-  public static double DEFAULT_SCORE = 0.0;
 
   @Override
   public String toString() {

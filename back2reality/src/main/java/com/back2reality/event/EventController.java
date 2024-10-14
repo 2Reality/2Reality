@@ -27,7 +27,7 @@ public class EventController {
   }
 
   @GetMapping("/recommend")
-  public List<TREvent> getEvents() {
+  public List<EventItem> getEvents() {
     RecommenderContext recommenderContext = DummyContext.INSTANCE;
     return eventRecommender.recommend(recommenderContext);
   }

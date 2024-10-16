@@ -10,7 +10,6 @@ import {EventService} from "../../service/event.service";
 })
 export class EventManagerComponent {
 
-  message: string
   eventForm: FormGroup
   recommenderResult: Array<Recommendation>
 
@@ -41,7 +40,6 @@ export class EventManagerComponent {
     this.eventService.createEvent(eventItem).subscribe(response => {
       console.log(response)
       this.recommendEvents()
-      this.message = "event " + response.title + " added";
     })
   }
 
@@ -49,7 +47,6 @@ export class EventManagerComponent {
     this.eventService.recommendEvents().subscribe(response => {
       console.log(response)
       this.recommenderResult = response
-      this.message = ''
     })
   }
 

@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author FLIGHT
  */
-public class HumanStorage implements CandidateStorage<HumanItem> {
+public class HumanStorage implements CandidateStorage<HumanItem>, EntityStorage<HumanForm> {
 
   private final Logger logger = LoggerFactory.getLogger(HumanStorage.class);
 
@@ -27,17 +27,19 @@ public class HumanStorage implements CandidateStorage<HumanItem> {
   }
 
   @Override
-  public List<HumanItem> getAllCandidates() {
+  public List<HumanItem> getCandidates() {
     return StreamUtils.toStream(humanRepository.findAll())
       .map(humanMapper::toHumanItem)
       .toList();
   }
 
+  @Override
   public void create(HumanForm humanForm) {
     humanRepository.save(humanMapper.toHuman(humanForm));
     logger.info("event {} saved", humanForm);
   }
 
+  @Override
   public void delete(long id) {
     humanRepository.deleteById(id);
     logger.info("event {} deleted", id);

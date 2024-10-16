@@ -1,0 +1,25 @@
+<app-header></app-header>
+<h3>Place manager</h3>
+
+<form [formGroup]="placeForm" (ngSubmit)="createPlace()">
+  <div>
+    <input type="text" formControlName="title" id="title" placeholder="title">
+    <input type="text" formControlName="description" id="description" placeholder="description">
+  </div>
+
+  <div>
+    <input formControlName="geo" id="geo" placeholder="geo">
+  </div>
+
+  <div>
+    <button type="submit">Create place</button>
+  </div>
+</form>
+
+<h3>All places</h3>
+<button (click)="recommendPlaces()">Update</button>
+<div *ngFor="let placeItem of recommenderResult">
+  <p>{{placeItem | json}}</p>
+  <button (click)="deletePlace(placeItem.id ? placeItem.id : 0)">Delete</button>
+</div>
+

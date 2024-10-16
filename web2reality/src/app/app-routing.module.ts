@@ -9,6 +9,7 @@ import {SignUpComponent} from "./pages/sign-up/sign-up.component";
 import {LoginComponent} from "./pages/login/login.component";
 import {AdminComponent} from "./admin/admin/admin.component";
 import {HumanManagerComponent} from "./admin/human-manager/human-manager.component";
+import {PlaceManagerComponent} from "./admin/place-manager/place-manager.component";
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'admin', component: AdminComponent},
   {path: 'event-manager', component: EventManagerComponent},
   {path: 'human-manager', component: HumanManagerComponent},
+  {path: 'place-manager', component: PlaceManagerComponent},
 ];
 
 @NgModule({

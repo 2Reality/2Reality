@@ -10,6 +10,15 @@ export class RecommendCardComponent {
 
   @Input() recommendation: Recommendation
 
+  title(): string {
+    if (this.recommendation.fullname)
+      return this.recommendation.fullname
+    else if (this.recommendation.title)
+      return this.recommendation.title
+
+    return "no title"
+  }
+
   descriptionPart(): string {
     let description = this.recommendation.description;
 

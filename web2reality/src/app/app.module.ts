@@ -20,6 +20,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RecommendCardComponent } from './components/recommend-card/recommend-card.component';
 import { HumanManagerComponent } from './admin/human-manager/human-manager.component';
 import { AdminComponent } from './admin/admin/admin.component';
+import { PlaceManagerComponent } from './admin/place-manager/place-manager.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AdminComponent } from './admin/admin/admin.component';
     RecommendCardComponent,
     HumanManagerComponent,
     AdminComponent,
+    PlaceManagerComponent,
   ],
   imports: [
     BrowserModule,

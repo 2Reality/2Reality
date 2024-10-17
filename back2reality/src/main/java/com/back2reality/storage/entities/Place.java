@@ -18,6 +18,7 @@ public class Place {
 
   private String description;
 
+  //  temporarily string, will need to be replaced with a specialized data type
   private String geo;
 
   public Place() {

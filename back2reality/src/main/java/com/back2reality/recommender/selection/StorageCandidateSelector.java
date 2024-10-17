@@ -18,6 +18,6 @@ public class StorageCandidateSelector<TItem> implements CandidateSelector<TItem>
 
   @Override
   public List<TItem> getCandidates(RecommenderContext recommenderContext) {
-    return storage.getAllCandidates();
+    return storage.getCandidates();
   }
 }

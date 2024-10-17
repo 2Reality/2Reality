@@ -7,5 +7,5 @@ import java.util.List;
  */
 public interface CandidateStorage<TItem> {
 
-  List<TItem> getAllCandidates();
+  List<TItem> getCandidates();
 }

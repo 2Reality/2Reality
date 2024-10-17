@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author FLIGHT
  */
-public class EventStorage implements CandidateStorage<EventItem> {
+public class EventStorage implements CandidateStorage<EventItem>, EntityStorage<EventForm> {
 
   private final Logger logger = LoggerFactory.getLogger(EventStorage.class);
 
@@ -27,17 +27,19 @@ public class EventStorage implements CandidateStorage<EventItem> {
   }
 
   @Override
-  public List<EventItem> getAllCandidates() {
+  public List<EventItem> getCandidates() {
     return StreamUtils.toStream(eventRepository.findAll())
       .map(eventMapper::toEventItem)
       .toList();
   }
 
+  @Override
   public void create(EventForm eventForm) {
     eventRepository.save(eventMapper.toEvent(eventForm));
     logger.info("event {} saved", eventForm);
   }
 
+  @Override
   public void delete(long id) {
     eventRepository.deleteById(id);
     logger.info("event {} deleted", id);

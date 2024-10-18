@@ -11,6 +11,7 @@ import com.back2reality.recommender.scoring.CandidateScorer;
 import com.back2reality.recommender.scoring.RandomCandidateScorer;
 import com.back2reality.recommender.selection.CandidateSelector;
 import com.back2reality.recommender.selection.StorageCandidateSelector;
+import com.back2reality.storage.dao.CandidateStorage;
 import com.back2reality.storage.dao.PlaceStorage;
 import com.back2reality.storage.mapper.PlaceMapper;
 import com.back2reality.storage.repository.PlaceRepository;
@@ -38,9 +39,9 @@ public class PlaceRecommenderContextConfiguration {
   }
 
   @Bean
-  public CandidateSelector<PlaceItem> placeItemStorageCandidateSelector(PlaceStorage placeStorage)
+  public CandidateSelector<PlaceItem> placeItemStorageCandidateSelector(CandidateStorage<PlaceItem> placeItemCandidateStorage)
   {
-    return new StorageCandidateSelector<>(placeStorage);
+    return new StorageCandidateSelector<>(placeItemCandidateStorage);
   }
 
   @Bean

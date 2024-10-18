@@ -12,7 +12,7 @@ public class Back2RealityApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(Back2RealityApplication.class, args);
-    logger.info("time to get back to reality...");
+    logger.info("time to get back 2 reality...");
   }
 
 }

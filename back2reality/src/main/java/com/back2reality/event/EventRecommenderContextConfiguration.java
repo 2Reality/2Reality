@@ -1,11 +1,17 @@
 package com.back2reality.event;
 
+import com.back2reality.recommender.item.ItemFactory;
 import com.back2reality.recommender.limitation.BaseCandidateLimiter;
+import com.back2reality.recommender.limitation.CandidateLimiter;
 import com.back2reality.recommender.logging.RecommenderLogger;
 import com.back2reality.recommender.logging.RecommenderStageLogger;
+import com.back2reality.recommender.ranking.CandidateRanker;
 import com.back2reality.recommender.ranking.ScoreCandidateRanker;
+import com.back2reality.recommender.scoring.CandidateScorer;
 import com.back2reality.recommender.scoring.RandomCandidateScorer;
+import com.back2reality.recommender.selection.CandidateSelector;
 import com.back2reality.recommender.selection.StorageCandidateSelector;
+import com.back2reality.storage.dao.CandidateStorage;
 import com.back2reality.storage.dao.EventStorage;
 import com.back2reality.storage.mapper.EventMapper;
 import com.back2reality.storage.repository.EventRepository;
@@ -20,7 +26,7 @@ import org.springframework.context.annotation.Configuration;
 public class EventRecommenderContextConfiguration {
 
   @Bean
-  public EventItemFactory eventItemFactory() {
+  public ItemFactory<EventItem> eventItemFactory() {
     return new EventItemFactory();
   }
 
@@ -35,44 +41,44 @@ public class EventRecommenderContextConfiguration {
   }
 
   @Bean
-  public StorageCandidateSelector<EventItem> storageCandidateSelector(EventStorage eventStorage) {
-    return new StorageCandidateSelector<>(eventStorage);
+  public CandidateSelector<EventItem> eventItemCandidateSelector(CandidateStorage<EventItem> eventItemCandidateStorage) {
+    return new StorageCandidateSelector<>(eventItemCandidateStorage);
   }
 
   @Bean
-  public RandomCandidateScorer<EventItem> randomEventCandidateScorer(EventItemFactory eventItemFactory) {
+  public CandidateScorer<EventItem> eventItemCandidateScorer(ItemFactory<EventItem> eventItemFactory) {
     return new RandomCandidateScorer<>(eventItemFactory);
   }
 
   @Bean
-  public ScoreCandidateRanker<EventItem> scoreEventCandidateRanker() {
+  public CandidateRanker<EventItem> eventItemCandidateRanker() {
     return new ScoreCandidateRanker<>();
   }
 
   @Bean
-  public BaseCandidateLimiter<EventItem> baseEventCandidateLimiter() {
+  public CandidateLimiter<EventItem> eventItemCandidateLimiter() {
     return new BaseCandidateLimiter<>();
   }
 
   @Bean
-  public RecommenderLogger<EventItem> eventRecommenderLogger() {
+  public RecommenderLogger<EventItem> eventItemRecommenderLogger() {
     return new RecommenderStageLogger<>();
   }
 
   @Bean
   public EventRecommender eventRecommender(
-    StorageCandidateSelector<EventItem> storageCandidateSelector,
-    RandomCandidateScorer<EventItem> randomEventCandidateScorer,
-    ScoreCandidateRanker<EventItem> scoreEventCandidateRanker,
-    BaseCandidateLimiter<EventItem> baseEventCandidateLimiter,
-    RecommenderLogger<EventItem> eventRecommenderLogger)
+    CandidateSelector<EventItem> eventItemCandidateSelector,
+    CandidateScorer<EventItem> eventItemCandidateScorer,
+    CandidateRanker<EventItem> eventItemCandidateRanker,
+    CandidateLimiter<EventItem> eventItemCandidateLimiter,
+    RecommenderLogger<EventItem> eventItemRecommenderLogger)
   {
     return new EventRecommender(
-      storageCandidateSelector,
-      randomEventCandidateScorer,
-      scoreEventCandidateRanker,
-      baseEventCandidateLimiter,
-      eventRecommenderLogger
+      eventItemCandidateSelector,
+      eventItemCandidateScorer,
+      eventItemCandidateRanker,
+      eventItemCandidateLimiter,
+      eventItemRecommenderLogger
     );
   }
 }

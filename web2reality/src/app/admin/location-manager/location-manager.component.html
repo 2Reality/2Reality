@@ -1,0 +1,31 @@
+<div>
+  <p>Near:</p>
+  {{result | json}}
+  <form [formGroup]="locationSearchForm" (ngSubmit)="near()">
+    <div>
+      <input formControlName="searchLongitude" id="search_longitude" placeholder="longitude">
+      <input formControlName="searchLatitude" id="search_latitude" placeholder="latitude">
+      <input formControlName="searchDistance" id="search_distance" placeholder="distance">
+    </div>
+
+    <div>
+      <button type="submit">Search nearest locations</button>
+    </div>
+  </form>
+</div>
+
+<p>Create location:</p>
+<form [formGroup]="locationCreationForm" (ngSubmit)="create()">
+  <div>
+    <input type="text" formControlName="title" id="title" placeholder="title">
+  </div>
+
+  <div>
+    <input formControlName="longitude" id="longitude" placeholder="longitude">
+    <input formControlName="latitude" id="latitude" placeholder="latitude">
+  </div>
+
+  <div>
+    <button type="submit">Create location</button>
+  </div>
+</form>

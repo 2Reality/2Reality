@@ -21,6 +21,7 @@ import { RecommendCardComponent } from './components/recommend-card/recommend-ca
 import { HumanManagerComponent } from './admin/human-manager/human-manager.component';
 import { AdminComponent } from './admin/admin/admin.component';
 import { PlaceManagerComponent } from './admin/place-manager/place-manager.component';
+import { LocationManagerComponent } from './admin/location-manager/location-manager.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { PlaceManagerComponent } from './admin/place-manager/place-manager.compo
     HumanManagerComponent,
     AdminComponent,
     PlaceManagerComponent,
+    LocationManagerComponent,
   ],
   imports: [
     BrowserModule,

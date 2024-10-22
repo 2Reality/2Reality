@@ -19,7 +19,7 @@ services:
       - db
 
   db:
-    image: postgres:latest
+    build: database/
     container_name: postgres2reality
     restart: always
     networks:
@@ -29,7 +29,7 @@ services:
       POSTGRES_PASSWORD: "0023"
       POSTGRES_DB: "2Reality"
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - ./database/postgres-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 

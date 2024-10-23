@@ -18,6 +18,7 @@ public class EventItemFactory implements ItemFactory<EventItem> {
       event.start(),
       event.finish(),
       event.geo(),
+      event.distance(),
       score);
   }
 }

@@ -2,6 +2,7 @@ package com.back2reality.storage.dao;
 
 import com.back2reality.event.EventForm;
 import com.back2reality.event.EventItem;
+import com.back2reality.recommender.context.RecommenderContext;
 import com.back2reality.storage.mapper.EventMapper;
 import com.back2reality.storage.repository.EventRepository;
 import com.back2reality.utils.StreamUtils;
@@ -27,9 +28,9 @@ public class EventStorage implements CandidateStorage<EventItem>, EntityStorage<
   }
 
   @Override
-  public List<EventItem> getCandidates() {
+  public List<EventItem> getCandidates(RecommenderContext recommenderContext) {
     return StreamUtils.toStream(eventRepository.findAll())
-      .map(eventMapper::toEventItem)
+      .map(event -> eventMapper.toEventItem(event, recommenderContext))
       .toList();
   }
 

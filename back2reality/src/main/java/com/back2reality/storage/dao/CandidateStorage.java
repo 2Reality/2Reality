@@ -1,5 +1,7 @@
 package com.back2reality.storage.dao;
 
+import com.back2reality.recommender.context.RecommenderContext;
+
 import java.util.List;
 
 /**
@@ -7,5 +9,5 @@ import java.util.List;
  */
 public interface CandidateStorage<TItem> {
 
-  List<TItem> getCandidates();
+  List<TItem> getCandidates(RecommenderContext recommenderContext);
 }

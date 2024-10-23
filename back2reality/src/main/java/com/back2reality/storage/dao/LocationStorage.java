@@ -1,7 +1,7 @@
 package com.back2reality.storage.dao;
 
 import com.back2reality.location.LocationItem;
-import com.back2reality.location.LocationMapper;
+import com.back2reality.location.LocationFactory;
 import com.back2reality.storage.entities.Location;
 import com.back2reality.storage.repository.LocationRepository;
 import org.locationtech.jts.geom.Coordinate;
@@ -21,11 +21,11 @@ public class LocationStorage {
 
   private final LocationRepository locationRepository;
 
-  private final LocationMapper locationMapper;
+  private final LocationFactory locationFactory;
 
-  public LocationStorage(LocationRepository locationRepository, LocationMapper locationMapper) {
+  public LocationStorage(LocationRepository locationRepository, LocationFactory locationFactory) {
     this.locationRepository = locationRepository;
-    this.locationMapper = locationMapper;
+    this.locationFactory = locationFactory;
   }
 
   public List<LocationItem> getLocationsNear(double longitude, double latitude, double distance) {
@@ -33,7 +33,7 @@ public class LocationStorage {
 
     logger.info("found {} nearest locations", nearestLocations.size());
     return nearestLocations.stream()
-            .map(locationMapper::toLocationItem)
+            .map(locationFactory::toLocationItem)
             .toList();
   }
 

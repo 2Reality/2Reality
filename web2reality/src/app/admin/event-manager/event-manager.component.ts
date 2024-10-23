@@ -23,7 +23,9 @@ export class EventManagerComponent {
       description: [''],
       start: [''],
       finish: [''],
-      geo: ['']
+      geo: [''],
+      longitude: [''],
+      latitude: ['']
     });
   }
 
@@ -34,7 +36,9 @@ export class EventManagerComponent {
       description: values.description,
       start: values.start,
       finish: values.finish,
-      geo: values.geo
+      geo: values.geo,
+      longitude: values.longitude,
+      latitude: values.latitude
     }
 
     this.eventService.createEvent(eventItem).subscribe(response => {

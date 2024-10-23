@@ -2,6 +2,7 @@ package com.back2reality.storage.dao;
 
 import com.back2reality.human.HumanForm;
 import com.back2reality.human.HumanItem;
+import com.back2reality.recommender.context.RecommenderContext;
 import com.back2reality.storage.mapper.HumanMapper;
 import com.back2reality.storage.repository.HumanRepository;
 import com.back2reality.utils.StreamUtils;
@@ -27,7 +28,7 @@ public class HumanStorage implements CandidateStorage<HumanItem>, EntityStorage<
   }
 
   @Override
-  public List<HumanItem> getCandidates() {
+  public List<HumanItem> getCandidates(RecommenderContext recommenderContext) {
     return StreamUtils.toStream(humanRepository.findAll())
       .map(humanMapper::toHumanItem)
       .toList();

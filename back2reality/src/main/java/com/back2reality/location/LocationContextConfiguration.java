@@ -2,6 +2,7 @@ package com.back2reality.location;
 
 import com.back2reality.storage.dao.LocationStorage;
 import com.back2reality.storage.repository.LocationRepository;
+import org.locationtech.jts.geom.GeometryFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,13 +14,17 @@ import org.springframework.context.annotation.Configuration;
 public class LocationContextConfiguration {
 
   @Bean
-  public LocationMapper locationMapper() {
-    return new LocationMapper();
+  public GeometryFactory geometryFactory() {
+    return new GeometryFactory();
+  }
+  @Bean
+  public LocationFactory locationMapper(GeometryFactory geometryFactory) {
+    return new LocationFactory(geometryFactory);
   }
   @Bean
   public LocationStorage locationStorage(
           LocationRepository locationRepository,
-          LocationMapper locationMapper) {
-    return new LocationStorage(locationRepository, locationMapper);
+          LocationFactory locationFactory) {
+    return new LocationStorage(locationRepository, locationFactory);
   }
 }

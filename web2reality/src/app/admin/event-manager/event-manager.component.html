@@ -1,28 +1,34 @@
 <app-header></app-header>
-<h3>Event manager</h3>
+<div class="m-5">
+    <h3>Event manager</h3>
 
-<form [formGroup]="eventForm" (ngSubmit)="createEvent()">
-  <div>
-    <input type="text" formControlName="title" id="title" placeholder="title">
-    <input type="text" formControlName="description" id="description" placeholder="description">
-  </div>
+    <form [formGroup]="eventForm" (ngSubmit)="createEvent()">
+        <div>
+            <input type="text" class="form-control" formControlName="title" id="title" placeholder="title">
+            <input type="text" class="form-control" formControlName="description" id="description"
+                   placeholder="description">
+        </div>
 
-  <input formControlName="start" type="datetime-local" placeholder="dd-mm-yyyy">
-  <input formControlName="finish" type="datetime-local" placeholder="dd-mm-yyyy">
+        <input class="form-control-sm" formControlName="start" type="datetime-local" placeholder="dd-mm-yyyy">
+        <input class="form-control-sm" formControlName="finish" type="datetime-local" placeholder="dd-mm-yyyy">
+        <input class="form-control" formControlName="geo" id="geo" placeholder="geo">
 
-  <div>
-    <input formControlName="geo" id="geo" placeholder="geo">
-  </div>
 
-  <div>
-    <button type="submit">Create event</button>
-  </div>
-</form>
+        <div>
+            <input class="form-control-sm" formControlName="longitude" id="longitude" placeholder="longitude">
+            <input class="form-control-sm" formControlName="latitude" id="latitude" placeholder="latitude">
+        </div>
 
-<h3>All events</h3>
-<button (click)="recommendEvents()">Update</button>
-<div *ngFor="let eventItem of recommenderResult">
-  <p>{{eventItem | json}}</p>
-  <button (click)="deleteEvent(eventItem.id ? eventItem.id : 0)">Delete</button>
+        <div>
+            <button type="submit">Create event</button>
+        </div>
+    </form>
+
+    <div class="p-3"></div>
+    <h3>All events</h3>
+    <button (click)="recommendEvents()">Update</button>
+    <div *ngFor="let eventItem of recommenderResult">
+        <p>{{eventItem | json}}</p>
+        <button (click)="deleteEvent(eventItem.id ? eventItem.id : 0)">Delete</button>
+    </div>
 </div>
-

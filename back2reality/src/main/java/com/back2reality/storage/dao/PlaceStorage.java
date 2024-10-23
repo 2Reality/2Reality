@@ -2,6 +2,7 @@ package com.back2reality.storage.dao;
 
 import com.back2reality.place.PlaceForm;
 import com.back2reality.place.PlaceItem;
+import com.back2reality.recommender.context.RecommenderContext;
 import com.back2reality.storage.mapper.PlaceMapper;
 import com.back2reality.storage.repository.PlaceRepository;
 import com.back2reality.utils.StreamUtils;
@@ -29,7 +30,7 @@ public class PlaceStorage implements CandidateStorage<PlaceItem>, EntityStorage<
 
 
   @Override
-  public List<PlaceItem> getCandidates() {
+  public List<PlaceItem> getCandidates(RecommenderContext recommenderContext) {
     return StreamUtils.toStream(placeRepository.findAll())
       .map(placeMapper::toPlaceItem)
       .toList();

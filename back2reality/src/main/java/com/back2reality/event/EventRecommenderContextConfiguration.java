@@ -1,14 +1,15 @@
 package com.back2reality.event;
 
+import com.back2reality.location.LocationFactory;
 import com.back2reality.recommender.item.ItemFactory;
 import com.back2reality.recommender.limitation.BaseCandidateLimiter;
 import com.back2reality.recommender.limitation.CandidateLimiter;
 import com.back2reality.recommender.logging.RecommenderLogger;
 import com.back2reality.recommender.logging.RecommenderStageLogger;
 import com.back2reality.recommender.ranking.CandidateRanker;
-import com.back2reality.recommender.ranking.ScoreCandidateRanker;
+import com.back2reality.recommender.ranking.ReverseCandidateRanker;
 import com.back2reality.recommender.scoring.CandidateScorer;
-import com.back2reality.recommender.scoring.RandomCandidateScorer;
+import com.back2reality.recommender.scoring.DistanceCandidateScorer;
 import com.back2reality.recommender.selection.CandidateSelector;
 import com.back2reality.recommender.selection.StorageCandidateSelector;
 import com.back2reality.storage.dao.CandidateStorage;
@@ -31,8 +32,8 @@ public class EventRecommenderContextConfiguration {
   }
 
   @Bean
-  public EventMapper eventMapper() {
-    return new EventMapper();
+  public EventMapper eventMapper(LocationFactory locationFactory) {
+    return new EventMapper(locationFactory);
   }
 
   @Bean
@@ -47,12 +48,14 @@ public class EventRecommenderContextConfiguration {
 
   @Bean
   public CandidateScorer<EventItem> eventItemCandidateScorer(ItemFactory<EventItem> eventItemFactory) {
-    return new RandomCandidateScorer<>(eventItemFactory);
+    return new DistanceCandidateScorer<>(eventItemFactory);
+//    return new RandomCandidateScorer<>(eventItemFactory);
   }
 
   @Bean
   public CandidateRanker<EventItem> eventItemCandidateRanker() {
-    return new ScoreCandidateRanker<>();
+    return new ReverseCandidateRanker<>();
+//    return new ScoreCandidateRanker<>();
   }
 
   @Bean

@@ -1,6 +1,7 @@
 package com.back2reality.human;
 
 import com.back2reality.network.TRResponse;
+import com.back2reality.recommender.context.ContextExtractionFactory;
 import com.back2reality.recommender.context.DummyContext;
 import com.back2reality.recommender.context.RecommenderContext;
 import com.back2reality.storage.dao.HumanStorage;
@@ -21,14 +22,21 @@ public class HumanController {
 
   private final HumanStorage humanStorage;
 
-  public HumanController(HumanRecommender humanRecommender, HumanStorage humanStorage) {
+  private final ContextExtractionFactory contextExtractionFactory;
+
+  public HumanController(
+          HumanRecommender humanRecommender,
+          HumanStorage humanStorage,
+          ContextExtractionFactory contextExtractionFactory)
+  {
     this.humanRecommender = humanRecommender;
     this.humanStorage = humanStorage;
+    this.contextExtractionFactory = contextExtractionFactory;
   }
 
   @GetMapping("/recommend")
   public List<HumanItem> getHumans() {
-    RecommenderContext recommenderContext = DummyContext.INSTANCE;
+    RecommenderContext recommenderContext = contextExtractionFactory.extract();
     return humanRecommender.recommend(recommenderContext);
   }
 

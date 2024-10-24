@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @author FLIGHT
  */
 
-@Component
+
 public class DummyContext implements RecommenderContext {
 
   @Value("${config.longitude}")
@@ -18,8 +18,6 @@ public class DummyContext implements RecommenderContext {
 
   @Value("${config.latitude}")
   private double latitude;
-
-  public static DummyContext INSTANCE = new DummyContext();
 
   @Override
   public RecommenderUser getUser() {

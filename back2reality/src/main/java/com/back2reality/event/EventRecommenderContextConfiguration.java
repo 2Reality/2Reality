@@ -1,5 +1,6 @@
 package com.back2reality.event;
 
+import com.back2reality.common.CommonContextConfiguration;
 import com.back2reality.location.LocationFactory;
 import com.back2reality.recommender.item.ItemFactory;
 import com.back2reality.recommender.limitation.BaseCandidateLimiter;
@@ -18,12 +19,14 @@ import com.back2reality.storage.mapper.EventMapper;
 import com.back2reality.storage.repository.EventRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * @author FLIGHT
  */
 
 @Configuration
+@Import({CommonContextConfiguration.class})
 public class EventRecommenderContextConfiguration {
 
   @Bean

@@ -5,7 +5,11 @@ export interface Recommendation {
   start?: any,
   finish?: any
   score?: any
+
   geo?: string,
+  longitude?: any
+  latitude?: any
+  distance?: any
 
   fullname?: string
   nickname?: string

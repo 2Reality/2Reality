@@ -1,6 +1,7 @@
 package com.back2reality.place;
 
 import com.back2reality.network.TRResponse;
+import com.back2reality.recommender.context.ContextExtractionFactory;
 import com.back2reality.recommender.context.DummyContext;
 import com.back2reality.recommender.context.RecommenderContext;
 import com.back2reality.storage.dao.PlaceStorage;
@@ -21,14 +22,21 @@ public class PlaceController {
 
   private final PlaceStorage placeStorage;
 
-  public PlaceController(PlaceRecommender placeRecommender, PlaceStorage placeStorage) {
+  private final ContextExtractionFactory contextExtractionFactory;
+
+  public PlaceController(
+          PlaceRecommender placeRecommender,
+          PlaceStorage placeStorage,
+          ContextExtractionFactory contextExtractionFactory)
+  {
     this.placeRecommender = placeRecommender;
     this.placeStorage = placeStorage;
+    this.contextExtractionFactory = contextExtractionFactory;
   }
 
   @GetMapping("/recommend")
   public List<PlaceItem> getEvents() {
-    RecommenderContext recommenderContext = DummyContext.INSTANCE;
+    RecommenderContext recommenderContext = contextExtractionFactory.extract();
     return placeRecommender.recommend(recommenderContext);
   }
 

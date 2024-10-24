@@ -1,5 +1,6 @@
 package com.back2reality.human;
 
+import com.back2reality.common.CommonContextConfiguration;
 import com.back2reality.recommender.item.ItemFactory;
 import com.back2reality.recommender.limitation.BaseCandidateLimiter;
 import com.back2reality.recommender.limitation.CandidateLimiter;
@@ -17,12 +18,14 @@ import com.back2reality.storage.mapper.HumanMapper;
 import com.back2reality.storage.repository.HumanRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * @author FLIGHT
  */
 
 @Configuration
+@Import({CommonContextConfiguration.class})
 public class HumanRecommenderContextConfiguration {
 
   @Bean

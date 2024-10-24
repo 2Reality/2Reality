@@ -1,7 +1,7 @@
 package com.back2reality.event;
 
 import com.back2reality.network.TRResponse;
-import com.back2reality.recommender.context.DummyContext;
+import com.back2reality.recommender.context.ContextExtractionFactory;
 import com.back2reality.recommender.context.RecommenderContext;
 import com.back2reality.storage.dao.EventStorage;
 import org.springframework.http.ResponseEntity;
@@ -21,14 +21,21 @@ public class EventController {
 
   private final EventStorage eventStorage;
 
-  public EventController(EventRecommender eventRecommender, EventStorage eventStorage) {
+  private final ContextExtractionFactory contextExtractionFactory;
+
+  public EventController(
+          EventRecommender eventRecommender,
+          EventStorage eventStorage,
+          ContextExtractionFactory contextExtractionFactory)
+  {
     this.eventRecommender = eventRecommender;
     this.eventStorage = eventStorage;
+    this.contextExtractionFactory = contextExtractionFactory;
   }
 
   @GetMapping("/recommend")
   public List<EventItem> getEvents() {
-    RecommenderContext recommenderContext = DummyContext.INSTANCE;
+    RecommenderContext recommenderContext = contextExtractionFactory.extract();
     return eventRecommender.recommend(recommenderContext);
   }
 

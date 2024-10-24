@@ -1,5 +1,6 @@
 package com.back2reality.place;
 
+import com.back2reality.common.CommonContextConfiguration;
 import com.back2reality.recommender.item.ItemFactory;
 import com.back2reality.recommender.limitation.BaseCandidateLimiter;
 import com.back2reality.recommender.limitation.CandidateLimiter;
@@ -17,12 +18,14 @@ import com.back2reality.storage.mapper.PlaceMapper;
 import com.back2reality.storage.repository.PlaceRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * @author FLIGHT
  */
 
 @Configuration
+@Import({CommonContextConfiguration.class})
 public class PlaceRecommenderContextConfiguration {
 
   @Bean

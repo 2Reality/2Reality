@@ -11,9 +11,12 @@
       <p class="card-text">{{title()}}</p>
     </div>
     <p class="card-text">{{descriptionPart()}}</p>
+    <div class="text-secondary">
+      <p>{{recommendation.geo}}</p>
+    </div>
     <div class="d-flex justify-content-between align-items-center">
       <div class="text-secondary">
-        {{recommendation.geo}}
+        {{recommendation.distance + ' km'}}
       </div>
       <small class="text-muted">{{time()}}</small>
     </div>

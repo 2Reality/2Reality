@@ -13,6 +13,7 @@ public class PlaceItemFactory implements ItemFactory<PlaceItem> {
       placeItem.title(),
       placeItem.description(),
       placeItem.geo(),
+      placeItem.distance(),
       score
     );
   }

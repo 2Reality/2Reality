@@ -6,10 +6,12 @@ import java.time.LocalDateTime;
  * @author FLIGHT
  */
 public record PlaceForm(
-  String title,
-  String description,
-  LocalDateTime start,
-  LocalDateTime finish,
-  String geo) {
+        String title,
+        String description,
+        LocalDateTime start,
+        LocalDateTime finish,
+        String geo,
+        double longitude,
+        double latitude) {
 }
 

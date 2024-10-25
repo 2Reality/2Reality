@@ -21,7 +21,9 @@ export class PlaceManagerComponent {
     this.placeForm = this.formBuilder.group({
       title: [''],
       description: [''],
-      geo: ['']
+      geo: [''],
+      longitude: [''],
+      latitude: ['']
     });
   }
 
@@ -30,7 +32,9 @@ export class PlaceManagerComponent {
     let placeItem: Recommendation = {
       title: values.title,
       description: values.description,
-      geo: values.geo
+      geo: values.geo,
+      longitude: values.longitude,
+      latitude: values.latitude
     }
 
     this.placeService.createPlace(placeItem).subscribe(response => {

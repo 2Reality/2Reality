@@ -1,6 +1,7 @@
 package com.back2reality.place;
 
 import com.back2reality.common.CommonContextConfiguration;
+import com.back2reality.location.LocationFactory;
 import com.back2reality.recommender.item.ItemFactory;
 import com.back2reality.recommender.limitation.BaseCandidateLimiter;
 import com.back2reality.recommender.limitation.CandidateLimiter;
@@ -29,8 +30,8 @@ import org.springframework.context.annotation.Import;
 public class PlaceRecommenderContextConfiguration {
 
   @Bean
-  public PlaceMapper placeMapper() {
-    return new PlaceMapper();
+  public PlaceMapper placeMapper(LocationFactory locationFactory) {
+    return new PlaceMapper(locationFactory);
   }
 
   @Bean

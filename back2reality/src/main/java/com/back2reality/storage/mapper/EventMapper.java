@@ -20,7 +20,9 @@ public class EventMapper {
     }
 
     public EventItem toEventItem(Event event, RecommenderContext recommenderContext) {
-        double distance = MathUtils.round(event.getLocation().distance(recommenderContext.location()) * 100, 2);
+        double distance = MathUtils.round(
+                event.getLocation().distance(recommenderContext.location()) * 100, 2
+        );
         return new EventItem(
                 event.getId(),
                 event.getTitle(),
@@ -34,7 +36,7 @@ public class EventMapper {
     }
 
     public Event toEvent(EventForm eventForm) {
-        Point point = locationFactory.toPoint(
+        Point location = locationFactory.toPoint(
                 eventForm.longitude(),
                 eventForm.latitude()
         );
@@ -45,7 +47,7 @@ public class EventMapper {
                 eventForm.start(),
                 eventForm.finish(),
                 eventForm.geo(),
-                point
+                location
         );
     }
 }

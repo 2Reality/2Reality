@@ -1,6 +1,7 @@
 package com.back2reality.human;
 
 import com.back2reality.common.CommonContextConfiguration;
+import com.back2reality.location.LocationFactory;
 import com.back2reality.recommender.item.ItemFactory;
 import com.back2reality.recommender.limitation.BaseCandidateLimiter;
 import com.back2reality.recommender.limitation.CandidateLimiter;
@@ -29,8 +30,8 @@ import org.springframework.context.annotation.Import;
 public class HumanRecommenderContextConfiguration {
 
   @Bean
-  public HumanMapper humanMapper() {
-    return new HumanMapper();
+  public HumanMapper humanMapper(LocationFactory locationFactory) {
+    return new HumanMapper(locationFactory);
   }
 
   @Bean

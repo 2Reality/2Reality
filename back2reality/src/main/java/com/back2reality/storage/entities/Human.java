@@ -1,7 +1,12 @@
 package com.back2reality.storage.entities;
 
 import com.back2reality.human.Sex;
+import com.back2reality.storage.serialization.JsonToPointDeserializer;
+import com.back2reality.storage.serialization.PointToJsonSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
+import org.locationtech.jts.geom.Point;
 
 /**
  * @author FLIGHT
@@ -28,16 +33,22 @@ public class Human {
 
   private String geo;
 
+  @JsonSerialize(using = PointToJsonSerializer.class)
+  @JsonDeserialize(using = JsonToPointDeserializer.class)
+  @Column(columnDefinition = "geometry(Point, 4326)")
+  private Point location;
+
   public Human() {
   }
 
-  public Human(String fullname, String nickname, String description, Sex sex, int age, String geo) {
+  public Human(String fullname, String nickname, String description, Sex sex, int age, String geo, Point location) {
     this.fullname = fullname;
     this.nickname = nickname;
     this.description = description;
     this.sex = sex;
     this.age = age;
     this.geo = geo;
+    this.location = location;
   }
 
   public long getId() {
@@ -94,5 +105,13 @@ public class Human {
 
   public void setGeo(String geo) {
     this.geo = geo;
+  }
+
+  public Point getLocation() {
+    return location;
+  }
+
+  public void setLocation(Point location) {
+    this.location = location;
   }
 }

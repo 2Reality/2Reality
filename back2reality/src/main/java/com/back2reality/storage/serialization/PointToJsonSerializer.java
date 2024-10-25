@@ -15,20 +15,21 @@ import java.io.IOException;
 public class PointToJsonSerializer extends JsonSerializer<Point> {
 
     @Override
-    public void serialize(Point value,
-                          JsonGenerator jgen,
-                          SerializerProvider provider) throws IOException {
+    public void serialize(
+            Point value,
+            JsonGenerator jsonGenerator,
+            SerializerProvider provider) throws IOException {
 
         String jsonValue = "null";
         try {
             if (value != null) {
-                double lat = value.getY();
-                double lon = value.getX();
-                jsonValue = String.format("POINT (%s %s)", lat, lon);
+                double latitude = value.getY();
+                double longitude = value.getX();
+                jsonValue = String.format("POINT (%s %s)", latitude, longitude);
             }
         } catch (Exception ignored) {
         }
 
-        jgen.writeString(jsonValue);
+        jsonGenerator.writeString(jsonValue);
     }
 }

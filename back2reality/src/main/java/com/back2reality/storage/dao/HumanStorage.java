@@ -30,7 +30,7 @@ public class HumanStorage implements CandidateStorage<HumanItem>, EntityStorage<
   @Override
   public List<HumanItem> getCandidates(RecommenderContext recommenderContext) {
     return StreamUtils.toStream(humanRepository.findAll())
-      .map(humanMapper::toHumanItem)
+      .map(human -> humanMapper.toHumanItem(human, recommenderContext))
       .toList();
   }
 

@@ -10,7 +10,6 @@ import {HumanService} from "../../service/human.service";
 })
 export class HumanManagerComponent {
 
-  message: string
   humanForm: FormGroup
   recommenderResult: Array<Recommendation>
 
@@ -25,7 +24,9 @@ export class HumanManagerComponent {
       description: [''],
       age: [''],
       sex: [''],
-      geo: ['']
+      geo: [''],
+      longitude: [''],
+      latitude: ['']
     });
   }
 
@@ -37,13 +38,14 @@ export class HumanManagerComponent {
       description: values.description,
       age: values.age,
       sex: values.sex,
-      geo: values.geo
+      geo: values.geo,
+      longitude: values.longitude,
+      latitude: values.latitude
     }
 
     this.humanService.createHuman(humanItem).subscribe(response => {
       console.log(response)
       this.recommendHumans()
-      this.message = "event " + response.title + " added";
     })
   }
 
@@ -51,7 +53,6 @@ export class HumanManagerComponent {
     this.humanService.recommendHumans().subscribe(response => {
       console.log(response)
       this.recommenderResult = response
-      this.message = ''
     })
   }
 

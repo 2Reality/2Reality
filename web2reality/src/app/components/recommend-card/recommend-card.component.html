@@ -10,6 +10,9 @@
     <div>
       <p class="card-text">{{title()}}</p>
     </div>
+    <div>
+      <p *ngIf="recommendation.nickname" class="text-secondary">{{'@' + recommendation.nickname}}</p>
+    </div>
     <p class="card-text">{{descriptionPart()}}</p>
     <div class="text-secondary">
       <p>{{recommendation.geo}}</p>

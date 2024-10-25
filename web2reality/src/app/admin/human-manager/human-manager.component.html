@@ -1,31 +1,37 @@
 <app-header></app-header>
-<h3>Human manager</h3>
-<p>{{message}}</p>
+<div class="m-5">
+    <h3>Human manager</h3>
 
-<form [formGroup]="humanForm" (ngSubmit)="createHuman()">
-  <div>
-    <input type="text" formControlName="fullname" id="fullname" placeholder="fullname">
-    <input type="text" formControlName="nickname" id="nickname" placeholder="nickname">
-  </div>
+    <form [formGroup]="humanForm" (ngSubmit)="createHuman()">
+        <div>
+            <input type="text" class="form-control" formControlName="fullname" id="fullname" placeholder="fullname">
+            <input type="text" class="form-control" formControlName="nickname" id="nickname" placeholder="nickname">
+        </div>
 
-  <div>
-    <input type="text" formControlName="age" id="age" placeholder="age">
-    <input type="text" formControlName="sex" id="sex" placeholder="sex">
-  </div>
+        <div>
+            <input type="text" class="form-control-sm" formControlName="age" id="age" placeholder="age">
+            <input type="text" class="form-control-sm" formControlName="sex" id="sex" placeholder="sex">
+        </div>
 
-  <div>
-    <input formControlName="geo" id="geo" placeholder="geo">
-  </div>
+        <div>
+            <input class="form-control" formControlName="geo" id="geo" placeholder="geo">
+        </div>
 
-  <div>
-    <button type="submit">Create human</button>
-  </div>
-</form>
+        <div>
+            <input class="form-control-sm" formControlName="longitude" id="longitude" placeholder="longitude">
+            <input class="form-control-sm" formControlName="latitude" id="latitude" placeholder="latitude">
+        </div>
 
-<h3>All Humans</h3>
-<button (click)="recommendHumans()">Update</button>
-<div *ngFor="let humanItem of recommenderResult">
-  <p>{{humanItem | json}}</p>
-  <button (click)="deleteHuman(humanItem.id ? humanItem.id : 0)">Delete</button>
+        <div class="mt-2">
+            <button type="submit">Create human</button>
+        </div>
+    </form>
+
+    <div class="p-3"></div>
+    <h3>All Humans</h3>
+    <button (click)="recommendHumans()">Update</button>
+    <div *ngFor="let humanItem of recommenderResult">
+        <p>{{humanItem | json}}</p>
+        <button (click)="deleteHuman(humanItem.id ? humanItem.id : 0)">Delete</button>
+    </div>
 </div>
-

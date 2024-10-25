@@ -32,7 +32,7 @@ public class PlaceStorage implements CandidateStorage<PlaceItem>, EntityStorage<
   @Override
   public List<PlaceItem> getCandidates(RecommenderContext recommenderContext) {
     return StreamUtils.toStream(placeRepository.findAll())
-      .map(placeMapper::toPlaceItem)
+      .map(place -> placeMapper.toPlaceItem(place, recommenderContext))
       .toList();
   }
 

@@ -19,8 +19,8 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_DIRECT_CHAT_ID }}
           LOCATION: ${{ secrets.CURRENT_LOCATION }}
         run: |
-          AUTHOR_NAME="${{ github.event.pull_request.user.login }}"
-          AUTHOR_EMAIL="${{ github.event.pull_request.user.email }}"
+          AUTHOR_NICKNAME="${{ github.event.pull_request.user.login }}"
+          AUTHOR_NAME="${{ github.event.pull_request.user.name }}"
           COMMIT_MESSAGE="${{ github.event.pull_request.title }}"
           REPO_NAME="${{ github.repository }}"
           PR_NUMBER="${{ github.event.pull_request.number }}"
@@ -30,7 +30,7 @@ jobs:
           has been merged into master in ${REPO_NAME}.
 
           Commit: ${COMMIT_MESSAGE}
-          Author: ${AUTHOR_NAME} (${AUTHOR_EMAIL})
+          Author: ${AUTHOR_NAME} @ ${AUTHOR_NICKNAME}
           Location: ${LOCATION}"
 
           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
@@ -44,8 +44,8 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_2R_CHAT_ID }}
           LOCATION: ${{ secrets.CURRENT_LOCATION }}
         run: |
-          AUTHOR_NAME="${{ github.event.pull_request.user.login }}"
-          AUTHOR_EMAIL="${{ github.event.pull_request.user.email }}"
+          AUTHOR_NICKNAME="${{ github.event.pull_request.user.login }}"
+          AUTHOR_NAME="${{ github.event.pull_request.user.name }}"
           COMMIT_MESSAGE="${{ github.event.pull_request.title }}"
           REPO_NAME="${{ github.repository }}"
           PR_NUMBER="${{ github.event.pull_request.number }}"
@@ -55,7 +55,7 @@ jobs:
           has been merged into master in ${REPO_NAME}.
 
           Commit: ${COMMIT_MESSAGE}
-          Author: ${AUTHOR_NAME} (${AUTHOR_EMAIL})
+          Author: ${AUTHOR_NAME} @ ${AUTHOR_NICKNAME}
           Location: ${LOCATION}"
 
           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \

@@ -20,9 +20,9 @@ jobs:
           LOCATION: ${{ secrets.CURRENT_LOCATION }}
         run: |
           declare -A USER_MAP
-          USER_MAP["FLlGHT"]="Michael @FLlGHT Fedorenko"
-          USER_MAP["APFan"]="Mikhail @maosokin Osokin"
-          USER_MAP["addicted-by"]="Aleksei @addicted_by Riabykin"
+          USER_MAP["FLlGHT"]="Michael Fedorenko @FLlGHT"
+          USER_MAP["APFan"]="Mikhail Osokin @maosokin"
+          USER_MAP["addicted-by"]="Aleksei Riabykin @addicted_by"
 
           AUTHOR_NICKNAME="${{ github.event.pull_request.user.login }}"
           TELEGRAM_USERNAME=${USER_MAP[$AUTHOR_NICKNAME]}
@@ -34,9 +34,9 @@ jobs:
           MESSAGE="A pull request ${PR_URL}
           has been merged into master in ${REPO_NAME}.
 
-          Commit message: ${COMMIT_MESSAGE}
-          Commit author: ${TELEGRAM_USERNAME}
-          Commit location: ${LOCATION}"
+          Commit: ${COMMIT_MESSAGE}
+          Author: ${TELEGRAM_USERNAME}
+          Location: ${LOCATION}"
 
           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
             -d chat_id="${TELEGRAM_CHAT_ID}" \
@@ -50,9 +50,9 @@ jobs:
           LOCATION: ${{ secrets.CURRENT_LOCATION }}
         run: |
           declare -A USER_MAP
-          USER_MAP["FLlGHT"]="Michael @FLlGHT Fedorenko"
-          USER_MAP["APFan"]="Mikhail @maosokin Osokin"
-          USER_MAP["addicted-by"]="@Aleksei @addicted_by Riabykin"
+          USER_MAP["FLlGHT"]="Michael Fedorenko @FLlGHT"
+          USER_MAP["APFan"]="Mikhail Osokin @maosokin"
+          USER_MAP["addicted-by"]="Aleksei Riabykin @addicted_by"
 
           AUTHOR_NICKNAME="${{ github.event.pull_request.user.login }}"
           TELEGRAM_USERNAME=${USER_MAP[$AUTHOR_NICKNAME]}
@@ -64,9 +64,9 @@ jobs:
           MESSAGE="A pull request ${PR_URL}
           has been merged into master in ${REPO_NAME}.
 
-          Commit message: ${COMMIT_MESSAGE}
-          Commit author: ${TELEGRAM_USERNAME}
-          Commit location: ${LOCATION}"
+          Commit: ${COMMIT_MESSAGE}
+          Author: ${TELEGRAM_USERNAME}
+          Location: ${LOCATION}"
 
           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
             -d chat_id="${TELEGRAM_CHAT_ID}" \

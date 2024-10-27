@@ -13,14 +13,15 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Send Direct Telegram Notification
+        if: ${{ github.event.pull_request.merged }}
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_DIRECT_CHAT_ID }}
           LOCATION: ${{ secrets.CURRENT_LOCATION }}
         run: |
-          AUTHOR_NAME="${{ github.event.head_commit.author.name }}"
-          AUTHOR_EMAIL="${{ github.event.head_commit.author.email }}"
-          COMMIT_MESSAGE="${{ github.event.head_commit.message }}"
+          AUTHOR_NAME="${{ github.event.pull_request.user.login }}"
+          AUTHOR_EMAIL="${{ github.event.pull_request.user.email }}"
+          COMMIT_MESSAGE="${{ github.event.pull_request.title }}"
           REPO_NAME="${{ github.repository }}"
           PR_NUMBER="${{ github.event.pull_request.number }}"
           PR_URL="https://github.com/${{ github.repository }}/pull/${PR_NUMBER}"
@@ -37,14 +38,15 @@ jobs:
             -d text="${MESSAGE}"
 
       - name: Send Chat Telegram Notification
+        if: ${{ github.event.pull_request.merged }}
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_2R_CHAT_ID }}
           LOCATION: ${{ secrets.CURRENT_LOCATION }}
         run: |
-          AUTHOR_NAME="${{ github.event.head_commit.author.name }}"
-          AUTHOR_EMAIL="${{ github.event.head_commit.author.email }}"
-          COMMIT_MESSAGE="${{ github.event.head_commit.message }}"
+          AUTHOR_NAME="${{ github.event.pull_request.user.login }}"
+          AUTHOR_EMAIL="${{ github.event.pull_request.user.email }}"
+          COMMIT_MESSAGE="${{ github.event.pull_request.title }}"
           REPO_NAME="${{ github.repository }}"
           PR_NUMBER="${{ github.event.pull_request.number }}"
           PR_URL="https://github.com/${{ github.repository }}/pull/${PR_NUMBER}"

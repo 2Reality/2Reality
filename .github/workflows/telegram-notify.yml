@@ -1,0 +1,65 @@
+name: Notify Telegram on PR Merge to Master
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Send Direct Telegram Notification
+        if: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true }}
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_DIRECT_CHAT_ID }}
+          LOCATION: ${{ secrets.CURRENT_LOCATION }}
+        run: |
+          AUTHOR_NAME="${{ github.event.head_commit.author.name }}"
+          AUTHOR_EMAIL="${{ github.event.head_commit.author.email }}"
+          COMMIT_MESSAGE="${{ github.event.head_commit.message }}"
+          REPO_NAME="${{ github.repository }}"
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          PR_URL="https://github.com/${{ github.repository }}/pull/${PR_NUMBER}"
+
+          MESSAGE="A pull request ${PR_URL}
+          has been merged into master in ${REPO_NAME}.
+
+          Commit: ${COMMIT_MESSAGE}
+          Author: ${AUTHOR_NAME} (${AUTHOR_EMAIL})
+          Location: ${LOCATION}"
+
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+            -d chat_id="${TELEGRAM_CHAT_ID}" \
+            -d text="${MESSAGE}"
+
+      - name: Send Chat Telegram Notification
+        if: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true }}
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_2R_CHAT_ID }}
+          LOCATION: ${{ secrets.CURRENT_LOCATION }}
+        run: |
+          AUTHOR_NAME="${{ github.event.head_commit.author.name }}"
+          AUTHOR_EMAIL="${{ github.event.head_commit.author.email }}"
+          COMMIT_MESSAGE="${{ github.event.head_commit.message }}"
+          REPO_NAME="${{ github.repository }}"
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          PR_URL="https://github.com/${{ github.repository }}/pull/${PR_NUMBER}"
+
+          MESSAGE="A pull request ${PR_URL}
+          has been merged into master in ${REPO_NAME}.
+
+          Commit: ${COMMIT_MESSAGE}
+          Author: ${AUTHOR_NAME} (${AUTHOR_EMAIL})
+          Location: ${LOCATION}"
+
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+            -d chat_id="${TELEGRAM_CHAT_ID}" \
+            -d text="${MESSAGE}"
+

@@ -36,4 +36,3 @@ out/
 ### VS Code ###
 .vscode/
 /database/postgres-data/
-/back2reality/src/main/resources/application.properties

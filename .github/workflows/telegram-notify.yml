@@ -12,6 +12,15 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
+      - name: Get Commit Author Info
+        id: commit_author
+        run: |
+          COMMIT_SHA="${{ github.event.pull_request.head.sha }}"
+          AUTHOR_NAME=$(git log -1 --pretty=format:'%an' ${COMMIT_SHA})
+          AUTHOR_EMAIL=$(git log -1 --pretty=format:'%ae' ${COMMIT_SHA})
+          echo "AUTHOR_NAME=${AUTHOR_NAME}" >> $GITHUB_ENV
+          echo "AUTHOR_EMAIL=${AUTHOR_EMAIL}" >> $GITHUB_ENV
+
       - name: Send Direct Telegram Notification
         if: ${{ github.event.pull_request.merged }}
         env:
@@ -20,7 +29,8 @@ jobs:
           LOCATION: ${{ secrets.CURRENT_LOCATION }}
         run: |
           AUTHOR_NICKNAME="${{ github.event.pull_request.user.login }}"
-          AUTHOR_NAME="${{ github.event.pull_request.user.name }}"
+          AUTHOR_NAME="${{ env.AUTHOR_NAME }}"
+          AUTHOR_EMAIL="${{ env.AUTHOR_EMAIL }}"
           COMMIT_MESSAGE="${{ github.event.pull_request.title }}"
           REPO_NAME="${{ github.repository }}"
           PR_NUMBER="${{ github.event.pull_request.number }}"
@@ -45,7 +55,8 @@ jobs:
           LOCATION: ${{ secrets.CURRENT_LOCATION }}
         run: |
           AUTHOR_NICKNAME="${{ github.event.pull_request.user.login }}"
-          AUTHOR_NAME="${{ github.event.pull_request.user.name }}"
+          AUTHOR_NAME="${{ env.AUTHOR_NAME }}"
+          AUTHOR_EMAIL="${{ env.AUTHOR_EMAIL }}"
           COMMIT_MESSAGE="${{ github.event.pull_request.title }}"
           REPO_NAME="${{ github.repository }}"
           PR_NUMBER="${{ github.event.pull_request.number }}"

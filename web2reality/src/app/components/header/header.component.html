@@ -14,9 +14,25 @@
       <li><a href="#" [ngClass]="getStyle('Places')" routerLink="/places">Places</a></li>
     </ul>
 
-    <div class="col-md-3 text-end">
-      <button type="button" class="btn btn-outline-primary me-2" routerLink="/login">Login</button>
-      <button type="button" class="btn btn-primary" routerLink="/sign-up">Sign-up</button>
+    <div class="col-md-3 text-end" *ngIf="!this.authenticated">
+      <button type="button"
+              class="btn btn-outline-primary me-2"
+              routerLink="/login">Login
+      </button>
+      <button type="button"
+              class="btn btn-primary"
+              routerLink="/sign-up">Sign-up
+      </button>
+    </div>
+
+    <div *ngIf="this.authenticated" class="d-flex align-items-center">
+      <span class="me-2">{{this.getCurrentUser()}}</span>
+      <button
+        *ngIf="this.authenticated"
+        (click)="signOut()"
+        class="btn btn-primary">
+        Sign-out
+      </button>
     </div>
   </header>
 </div>

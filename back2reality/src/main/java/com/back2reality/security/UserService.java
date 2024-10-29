@@ -29,9 +29,9 @@ public class UserService {
       throw new RuntimeException("User with this username already exists");
     }
 
-    if (repository.existsByEmail(user.getEmail())) {
-      throw new RuntimeException("A user with this email already exists");
-    }
+//    if (repository.existsByEmail(user.getEmail())) {
+//      throw new RuntimeException("A user with this email already exists");
+//    }
 
     return save(user);
   }

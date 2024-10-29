@@ -24,6 +24,8 @@ public class User implements UserDetails {
 
   private String password;
 
+  private String fullname;
+
   private String email;
 
   @Enumerated(EnumType.STRING)
@@ -52,6 +54,10 @@ public class User implements UserDetails {
     return username;
   }
 
+  public String getFullname() {
+    return fullname;
+  }
+
   public String getEmail() {
     return email;
   }
@@ -70,6 +76,10 @@ public class User implements UserDetails {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public void setFullname(String fullname) {
+    this.fullname = fullname;
   }
 
   public void setEmail(String email) {

@@ -1,9 +1,10 @@
 package com.back2reality.security;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.back2reality.storage.entities.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author FLIGHT
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+
+  private final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
   private final AuthenticationService authenticationService;
 
@@ -27,5 +30,11 @@ public class AuthController {
   @PostMapping("/sign-in")
   public JwtAuthenticationResponse signIn(@RequestBody SignInRequest request) {
     return authenticationService.signIn(request);
+  }
+
+  @GetMapping("/me")
+  public AuthResponse checkAuth(@AuthenticationPrincipal User user) {
+    logger.info("checking auth status...");
+    return AuthResponse.from(user);
   }
 }

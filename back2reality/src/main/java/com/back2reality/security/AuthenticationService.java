@@ -33,6 +33,7 @@ public class AuthenticationService {
   public JwtAuthenticationResponse signUp(SignUpRequest request) {
     User user = new User();
 
+    user.setFullname(request.fullname());
     user.setUsername(request.username());
     user.setEmail(request.email());
     user.setPassword(passwordEncoder.encode(request.password()));

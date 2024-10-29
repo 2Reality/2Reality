@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import {InterceptorService} from "./interceptor.service";
+import {InterceptorService} from "./auth/interceptor.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {EventManagerComponent} from "./admin/event-manager/event-manager.component";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -43,12 +43,13 @@ import { LocationManagerComponent } from './admin/location-manager/location-mana
     PlaceManagerComponent,
     LocationManagerComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        FormsModule,
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

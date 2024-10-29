@@ -20,9 +20,9 @@ jobs:
           LOCATION: ${{ secrets.CURRENT_LOCATION }}
         run: |
           declare -A USER_MAP
-          USER_MAP["FLlGHT"]="Michael Fedorenko @FLlGHT"
-          USER_MAP["APFan"]="Mikhail Osokin @maosokin"
-          USER_MAP["addicted-by"]="Aleksei Riabykin @addicted_by"
+          USER_MAP["FLlGHT"]="Michael Fedorenko (@FLlGHT)"
+          USER_MAP["APFan"]="Mikhail Osokin (@maosokin)"
+          USER_MAP["addicted-by"]="Aleksei Riabykin (@addicted_by)"
 
           AUTHOR_NICKNAME="${{ github.event.pull_request.user.login }}"
           TELEGRAM_USERNAME=${USER_MAP[$AUTHOR_NICKNAME]}
@@ -50,9 +50,9 @@ jobs:
           LOCATION: ${{ secrets.CURRENT_LOCATION }}
         run: |
           declare -A USER_MAP
-          USER_MAP["FLlGHT"]="Michael Fedorenko @FLlGHT"
-          USER_MAP["APFan"]="Mikhail Osokin @maosokin"
-          USER_MAP["addicted-by"]="Aleksei Riabykin @addicted_by"
+          USER_MAP["FLlGHT"]="Michael Fedorenko (@FLlGHT)"
+          USER_MAP["APFan"]="Mikhail Osokin (@maosokin)"
+          USER_MAP["addicted-by"]="Aleksei Riabykin (@addicted_by)"
 
           AUTHOR_NICKNAME="${{ github.event.pull_request.user.login }}"
           TELEGRAM_USERNAME=${USER_MAP[$AUTHOR_NICKNAME]}

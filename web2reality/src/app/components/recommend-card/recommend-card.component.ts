@@ -19,8 +19,15 @@ export class RecommendCardComponent {
     return "no title"
   }
 
+  getLink() {
+    return '/' + this.recommendation.nickname
+  }
+
   descriptionPart(): string {
     let description = this.recommendation.description;
+
+    if (!description)
+      return ''
 
     return description.length < 40
       ? description

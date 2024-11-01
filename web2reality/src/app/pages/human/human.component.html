@@ -1,0 +1,59 @@
+<app-header
+
+></app-header>
+
+
+<div class="row">
+
+  <!--                Profile image-->
+  <div class="col-md-auto p-5">
+    <svg class="bd-placeholder-img rounded-circle" width="300" height="300"
+         xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
+         preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+      <rect width="100%" height="100%" fill="#777"></rect>
+      <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+    </svg>
+  </div>
+
+  <!--                Profile info-->
+  <div *ngIf="human" class="col-md-6">
+    <div class="d-flex align-items-baseline mt-3">
+      <h1 class="pt-5 profile-name lh-1 me-2">{{human.fullname}}</h1>
+      <h1 class="text-muted username">{{'@ ' + human.nickname}}</h1>
+    </div>
+
+    <div class="d-flex align-items-baseline pt-3">
+      <i *ngIf="human.geo" class="bi bi-house"></i>
+      <h6 *ngIf="human.geo" class="ps-2">{{human.geo}}</h6>
+      <i *ngIf="human.distance" class="p-2 bi bi-arrows-move"></i>
+      <h6 *ngIf="human.distance">{{human.distance + ' km'}}</h6>
+    </div>
+
+    <div *ngIf="human.birthDate" class="d-flex align-items-baseline">
+      <i *ngIf="human.birthDate" class="bi bi-calendar pe-2"></i>
+      <h6 *ngIf="human.birthDate" class="text-dark pe-2">{{human.birthDate | date}}</h6>
+    </div>
+
+    <div *ngIf="human.sex" class="d-flex align-items-baseline">
+      <i class="bi bi-people-fill pe-2"></i>
+      <h6 class="text-dark pe-2">{{human.sex}}</h6>
+    </div>
+
+    <div class="row row-cols-auto pt-2" *ngIf="human.description">
+      <blockquote class="blockquote text-secondary">
+        <p class="col profile-description">{{human.description}}</p>
+      </blockquote>
+    </div>
+
+    <!--    <div class="row row-cols-md-auto pt-2">-->
+    <!--      <div *ngFor="let externalLink of profile.externalLinks">-->
+    <!--        <i class="col-md-auto bi bi-link me-1"></i>-->
+    <!--        <a class="col-md-auto link-dark" [href]="externalLink.link">{{externalLink.title}}</a>-->
+    <!--      </div>-->
+    <!--    </div>-->
+
+  </div>
+
+</div>
+
+

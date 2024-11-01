@@ -40,6 +40,12 @@ public class HumanController {
     return humanRecommender.recommend(recommenderContext);
   }
 
+  @GetMapping("/{nickname}")
+  public HumanItem getHuman(@PathVariable String nickname) {
+    RecommenderContext recommenderContext = contextExtractionFactory.extract();
+    return humanStorage.getHuman(nickname, recommenderContext);
+  }
+
   @PostMapping( "/create")
   public HumanForm create(@RequestBody HumanForm humanForm) {
     humanStorage.create(humanForm);

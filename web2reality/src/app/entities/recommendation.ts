@@ -1,7 +1,7 @@
 export interface Recommendation {
   id?: number,
   title?: string,
-  description: string,
+  description?: string,
   start?: any,
   finish?: any
   score?: any
@@ -14,5 +14,6 @@ export interface Recommendation {
   fullname?: string
   nickname?: string
   sex?: any,
+  birthDate?: any,
   age?: any
 }

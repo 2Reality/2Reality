@@ -3,6 +3,8 @@ package com.back2reality.storage.dao;
 import com.back2reality.human.HumanForm;
 import com.back2reality.human.HumanItem;
 import com.back2reality.recommender.context.RecommenderContext;
+import com.back2reality.storage.entities.Human;
+import com.back2reality.storage.entities.Image;
 import com.back2reality.storage.mapper.HumanMapper;
 import com.back2reality.storage.repository.HumanRepository;
 import com.back2reality.utils.StreamUtils;
@@ -44,5 +46,18 @@ public class HumanStorage implements CandidateStorage<HumanItem>, EntityStorage<
   public void delete(long id) {
     humanRepository.deleteById(id);
     logger.info("event {} deleted", id);
+  }
+
+  public HumanItem getHuman(String nickname, RecommenderContext context) {
+    return humanRepository.findHumanByNickname(nickname)
+      .map(human -> humanMapper.toHumanItem(human, context))
+      .orElseThrow(IllegalArgumentException::new);
+  }
+
+  public void addImage(Human human, Image image) {
+    List<Image> images = human.getImages();
+    images.add(image);
+    human.setImages(images);
+    humanRepository.save(human);
   }
 }

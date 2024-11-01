@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Recommendation} from "../../entities/recommendation";
 import {HumanService} from "../../service/human.service";
+import {ImageService} from "../../service/image.service";
 
 @Component({
   selector: 'app-human-manager',
@@ -11,9 +12,15 @@ import {HumanService} from "../../service/human.service";
 export class HumanManagerComponent {
 
   humanForm: FormGroup
+  image: any
+  imageMessage: string
   recommenderResult: Array<Recommendation>
 
-  constructor(private humanService: HumanService, public formBuilder: FormBuilder) {
+  constructor(
+    private humanService: HumanService,
+    private imageService: ImageService,
+    private formBuilder: FormBuilder)
+  {
     this.initForm()
   }
 
@@ -22,11 +29,12 @@ export class HumanManagerComponent {
       fullname: [''],
       nickname: [''],
       description: [''],
-      age: [''],
+      birthDate: [''],
       sex: [''],
       geo: [''],
       longitude: [''],
-      latitude: ['']
+      latitude: [''],
+      image: [null]
     });
   }
 
@@ -36,7 +44,7 @@ export class HumanManagerComponent {
       fullname: values.fullname,
       nickname: values.nickname,
       description: values.description,
-      age: values.age,
+      birthDate: values.birthDate,
       sex: values.sex,
       geo: values.geo,
       longitude: values.longitude,
@@ -60,6 +68,19 @@ export class HumanManagerComponent {
     this.humanService.deleteHuman(id).subscribe(response => {
       console.log(response)
       this.recommendHumans()
+    })
+  }
+
+  onImageUpload(event : any) {
+    this.image = event.target.files[0]
+    this.addImage()
+  }
+
+  addImage() {
+    let imageData = new FormData();
+    imageData.append('image', this.image, this.image.name)
+    this.imageService.saveImage(imageData).subscribe(response => {
+      this.imageMessage = response.answer
     })
   }
 }

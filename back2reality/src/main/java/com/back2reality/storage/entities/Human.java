@@ -3,10 +3,14 @@ package com.back2reality.storage.entities;
 import com.back2reality.human.Sex;
 import com.back2reality.storage.serialization.JsonToPointDeserializer;
 import com.back2reality.storage.serialization.PointToJsonSerializer;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import org.locationtech.jts.geom.Point;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author FLIGHT
@@ -29,9 +33,13 @@ public class Human {
 
   private Sex sex;
 
-  private int age;
+  private LocalDateTime birthDate;
 
   private String geo;
+
+  @OneToMany(mappedBy = "human")
+  @JsonIgnoreProperties(value = "human", allowGetters = true)
+  private List<Image> images;
 
   @JsonSerialize(using = PointToJsonSerializer.class)
   @JsonDeserialize(using = JsonToPointDeserializer.class)
@@ -41,12 +49,19 @@ public class Human {
   public Human() {
   }
 
-  public Human(String fullname, String nickname, String description, Sex sex, int age, String geo, Point location) {
+  public Human(String fullname,
+               String nickname,
+               String description,
+               Sex sex,
+               LocalDateTime birthDate,
+               String geo,
+               Point location)
+  {
     this.fullname = fullname;
     this.nickname = nickname;
     this.description = description;
     this.sex = sex;
-    this.age = age;
+    this.birthDate = birthDate;
     this.geo = geo;
     this.location = location;
   }
@@ -91,12 +106,12 @@ public class Human {
     this.sex = sex;
   }
 
-  public int getAge() {
-    return age;
+  public LocalDateTime getBirthDate() {
+    return birthDate;
   }
 
-  public void setAge(int age) {
-    this.age = age;
+  public void setBirthDate(LocalDateTime birthDate) {
+    this.birthDate = birthDate;
   }
 
   public String getGeo() {
@@ -113,5 +128,13 @@ public class Human {
 
   public void setLocation(Point location) {
     this.location = location;
+  }
+
+  public List<Image> getImages() {
+    return images;
+  }
+
+  public void setImages(List<Image> images) {
+    this.images = images;
   }
 }

@@ -29,7 +29,7 @@ public class HumanMapper {
                 human.getNickname(),
                 human.getDescription(),
                 human.getSex(),
-                human.getAge(),
+                human.getBirthDate(),
                 human.getGeo(),
                 distance,
                 HumanItem.DEFAULT_SCORE
@@ -46,7 +46,7 @@ public class HumanMapper {
                 humanForm.nickname(),
                 humanForm.description(),
                 humanForm.sex(),
-                humanForm.age(),
+                humanForm.birthDate(),
                 humanForm.geo(),
                 location
         );

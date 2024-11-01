@@ -24,7 +24,9 @@ public class User implements UserDetails {
 
   private String password;
 
-  private String fullname;
+  @JoinColumn(name = "human_id")
+  @OneToOne(fetch = FetchType.EAGER)
+  private Human human;
 
   private String email;
 
@@ -54,10 +56,6 @@ public class User implements UserDetails {
     return username;
   }
 
-  public String getFullname() {
-    return fullname;
-  }
-
   public String getEmail() {
     return email;
   }
@@ -78,15 +76,19 @@ public class User implements UserDetails {
     this.password = password;
   }
 
-  public void setFullname(String fullname) {
-    this.fullname = fullname;
-  }
-
   public void setEmail(String email) {
     this.email = email;
   }
 
   public void setRole(Role role) {
     this.role = role;
+  }
+
+  public Human getHuman() {
+    return human;
+  }
+
+  public void setHuman(Human human) {
+    this.human = human;
   }
 }

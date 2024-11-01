@@ -22,6 +22,7 @@ import { HumanManagerComponent } from './admin/human-manager/human-manager.compo
 import { AdminComponent } from './admin/admin/admin.component';
 import { PlaceManagerComponent } from './admin/place-manager/place-manager.component';
 import { LocationManagerComponent } from './admin/location-manager/location-manager.component';
+import { HumanComponent } from './pages/human/human.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { LocationManagerComponent } from './admin/location-manager/location-mana
     AdminComponent,
     PlaceManagerComponent,
     LocationManagerComponent,
+    HumanComponent,
   ],
     imports: [
         BrowserModule,

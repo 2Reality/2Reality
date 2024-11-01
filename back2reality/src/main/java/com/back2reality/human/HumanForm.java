@@ -1,5 +1,7 @@
 package com.back2reality.human;
 
+import java.time.LocalDateTime;
+
 /**
  * @author FLIGHT
  */
@@ -8,7 +10,7 @@ public record HumanForm(
         String nickname,
         String description,
         Sex sex,
-        int age,
+        LocalDateTime birthDate,
         String geo,
         double longitude,
         double latitude

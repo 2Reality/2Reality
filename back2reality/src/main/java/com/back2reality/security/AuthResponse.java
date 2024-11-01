@@ -9,7 +9,7 @@ public record AuthResponse(String fullname, String nickname) {
 
   public static AuthResponse from(User user) {
     return new AuthResponse(
-      user.getFullname(),
+      user.getHuman().getFullname(),
       user.getUsername()
     );
   }

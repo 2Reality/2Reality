@@ -21,6 +21,10 @@ export class HumanService {
     return this.httpClient.get<Array<any>>(this.url + '/recommend')
   }
 
+  getHuman(nickname: string): Observable<any> {
+    return this.httpClient.get<any>(this.url + '/' + nickname)
+  }
+
   deleteHuman(id: number): Observable<any> {
     return this.httpClient.delete<any>(this.url + "/delete/" + id)
   }

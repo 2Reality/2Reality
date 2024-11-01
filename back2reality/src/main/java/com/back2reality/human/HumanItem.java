@@ -1,5 +1,6 @@
 package com.back2reality.human;
 
+import com.back2reality.image.ImageItem;
 import com.back2reality.recommender.item.WithDistance;
 import com.back2reality.recommender.item.WithScore;
 
@@ -15,6 +16,7 @@ public record HumanItem(
         String description,
         Sex sex,
         LocalDateTime birthDate,
+        ImageItem image,
         String geo,
         double distance,
         double score

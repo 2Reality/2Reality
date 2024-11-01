@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.zip.Deflater;
+import java.util.zip.Inflater;
 
 /**
  * @author FLIGHT
@@ -22,12 +23,30 @@ public class ImageProcessingContextConfiguration {
   }
 
   @Bean
+  public Inflater inflater() {
+    return new Inflater();
+  }
+
+  @Bean
   public ImageStorage imageStorage(ImageRepository imageRepository) {
     return new ImageStorage(imageRepository);
   }
 
+
   @Bean
-  public ImageProcessor imageProcessor(ImageStorage imageStorage, HumanStorage humanStorage, Deflater deflater) {
-    return new ImageProcessor(imageStorage, humanStorage, deflater);
+  public ImageCompressor imageCompressor(Deflater deflater, Inflater inflater) {
+    return new ImageCompressor(deflater, inflater);
+  }
+  @Bean
+  public ImageProcessor imageProcessor(
+    ImageStorage imageStorage,
+    HumanStorage humanStorage,
+    ImageCompressor imageCompressor)
+  {
+    return new ImageProcessor(
+      imageStorage,
+      humanStorage,
+      imageCompressor
+    );
   }
 }

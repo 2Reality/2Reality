@@ -1,6 +1,9 @@
 package com.back2reality.human;
 
 import com.back2reality.common.CommonContextConfiguration;
+import com.back2reality.image.ImageCompressor;
+import com.back2reality.image.ImageProcessingContextConfiguration;
+import com.back2reality.image.ImageProcessor;
 import com.back2reality.location.LocationFactory;
 import com.back2reality.recommender.item.ItemFactory;
 import com.back2reality.recommender.limitation.BaseCandidateLimiter;
@@ -26,12 +29,14 @@ import org.springframework.context.annotation.Import;
  */
 
 @Configuration
-@Import({CommonContextConfiguration.class})
+@Import({
+  CommonContextConfiguration.class
+})
 public class HumanRecommenderContextConfiguration {
 
   @Bean
-  public HumanMapper humanMapper(LocationFactory locationFactory) {
-    return new HumanMapper(locationFactory);
+  public HumanMapper humanMapper(LocationFactory locationFactory, ImageCompressor imageCompressor) {
+    return new HumanMapper(locationFactory, imageCompressor);
   }
 
   @Bean
@@ -75,8 +80,7 @@ public class HumanRecommenderContextConfiguration {
     CandidateScorer<HumanItem> humanItemCandidateScorer,
     CandidateRanker<HumanItem> humanItemCandidateRanker,
     CandidateLimiter<HumanItem> humanItemCandidateLimiter,
-    RecommenderLogger<HumanItem> humanItemRecommenderLogger)
-  {
+    RecommenderLogger<HumanItem> humanItemRecommenderLogger) {
     return new HumanRecommender(
       humanItemCandidateSelector,
       humanItemCandidateScorer,

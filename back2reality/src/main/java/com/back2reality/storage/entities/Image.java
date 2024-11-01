@@ -2,6 +2,8 @@ package com.back2reality.storage.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 /**
  * @author FLIGHT
  */
@@ -15,6 +17,8 @@ public class Image {
   private String name;
   @Lob
   private byte[] content;
+
+  private LocalDateTime uploadDate;
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "human_id")
@@ -42,6 +46,14 @@ public class Image {
 
   public void setContent(byte[] content) {
     this.content = content;
+  }
+
+  public LocalDateTime getUploadDate() {
+    return uploadDate;
+  }
+
+  public void setUploadDate(LocalDateTime uploadDate) {
+    this.uploadDate = uploadDate;
   }
 
   public Human getHuman() {

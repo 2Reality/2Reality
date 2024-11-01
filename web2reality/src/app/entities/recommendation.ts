@@ -1,3 +1,5 @@
+import {Image} from "./image";
+
 export interface Recommendation {
   id?: number,
   title?: string,
@@ -16,4 +18,5 @@ export interface Recommendation {
   sex?: any,
   birthDate?: any,
   age?: any
+  image?: Image
 }

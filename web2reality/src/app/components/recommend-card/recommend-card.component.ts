@@ -10,6 +10,8 @@ export class RecommendCardComponent {
 
   @Input() recommendation: Recommendation
 
+  base64 : any
+
   title(): string {
     if (this.recommendation.fullname)
       return this.recommendation.fullname
@@ -40,5 +42,18 @@ export class RecommendCardComponent {
 
     let date = new Date(this.recommendation.start)
     return date.toDateString();
+  }
+
+  imageIsPresent(): boolean {
+    return this.recommendation.image && this.recommendation.image.content
+  }
+
+  getImage() {
+    if (!this.recommendation.image) {
+      return ''
+    }
+
+    this.base64 = this.recommendation.image.content
+    return 'data:image/jpeg;base64,' + this.base64
   }
 }

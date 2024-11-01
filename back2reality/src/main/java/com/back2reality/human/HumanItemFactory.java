@@ -15,6 +15,7 @@ public class HumanItemFactory implements ItemFactory<HumanItem> {
                 humanItem.description(),
                 humanItem.sex(),
                 humanItem.birthDate(),
+                humanItem.image(),
                 humanItem.geo(),
                 humanItem.distance(),
                 score

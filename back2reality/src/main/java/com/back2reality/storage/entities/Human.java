@@ -37,7 +37,7 @@ public class Human {
 
   private String geo;
 
-  @OneToMany(mappedBy = "human")
+  @OneToMany(mappedBy = "human", fetch = FetchType.EAGER)
   @JsonIgnoreProperties(value = "human", allowGetters = true)
   private List<Image> images;
 

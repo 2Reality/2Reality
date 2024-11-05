@@ -28,4 +28,8 @@ export class HumanService {
   deleteHuman(id: number): Observable<any> {
     return this.httpClient.delete<any>(this.url + "/delete/" + id)
   }
+
+  updateHuman(human: Recommendation): Observable<Recommendation> {
+    return this.httpClient.post<Recommendation>(this.url + '/update', human)
+  }
 }

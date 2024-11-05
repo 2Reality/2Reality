@@ -23,6 +23,8 @@ import { AdminComponent } from './admin/admin/admin.component';
 import { PlaceManagerComponent } from './admin/place-manager/place-manager.component';
 import { LocationManagerComponent } from './admin/location-manager/location-manager.component';
 import { HumanComponent } from './pages/human/human.component';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { HumanComponent } from './pages/human/human.component';
     PlaceManagerComponent,
     LocationManagerComponent,
     HumanComponent,
+    DropdownComponent,
+    ProfileEditComponent,
   ],
     imports: [
         BrowserModule,

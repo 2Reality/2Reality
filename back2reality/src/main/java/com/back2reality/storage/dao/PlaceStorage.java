@@ -43,6 +43,11 @@ public class PlaceStorage implements CandidateStorage<PlaceItem>, EntityStorage<
   }
 
   @Override
+  public void update(PlaceForm placeForm) {
+
+  }
+
+  @Override
   public void delete(long id) {
     placeRepository.deleteById(id);
     logger.info("event {} deleted", id);

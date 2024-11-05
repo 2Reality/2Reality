@@ -16,7 +16,7 @@ export class AuthenticationService {
 
   private authenticatedUser: User
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient) {
     this.checkAuthentication()
   }
 
@@ -59,5 +59,13 @@ export class AuthenticationService {
 
   getAuthenticatedUser(): User {
     return this.authenticatedUser;
+  }
+
+  updateNickname(nickname: string): void {
+    if (this.authenticatedUser.nickname != nickname) {
+      this.authenticatedUser.nickname = nickname
+      this.signOut()
+      console.log('nickname updated!')
+    }
   }
 }

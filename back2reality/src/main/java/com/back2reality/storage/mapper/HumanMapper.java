@@ -43,9 +43,28 @@ public class HumanMapper {
       human.getBirthDate(),
       image,
       human.getGeo(),
+      human.getLocation().getX(),
+      human.getLocation().getY(),
       distance,
       HumanItem.DEFAULT_SCORE
     );
+  }
+
+  public Human update(Human human, HumanForm humanForm) {
+    Point location = locationFactory.toPoint(
+      humanForm.longitude(),
+      humanForm.latitude()
+    );
+
+    human.setFullname(humanForm.fullname());
+    human.setNickname(humanForm.nickname());
+    human.setGeo(humanForm.geo());
+    human.setDescription(humanForm.description());
+    human.setSex(humanForm.sex());
+    human.setLocation(location);
+    human.setBirthDate(humanForm.birthDate());
+
+    return human;
   }
 
   public Human toHuman(HumanForm humanForm) {
@@ -65,7 +84,7 @@ public class HumanMapper {
   }
 
   private ImageItem toImage(List<Image> images) {
-    if (images.isEmpty())
+    if (images == null || images.isEmpty())
       return ImageItem.empty;
 
     // testing mock

@@ -12,6 +12,7 @@ import {HumanManagerComponent} from "./admin/human-manager/human-manager.compone
 import {PlaceManagerComponent} from "./admin/place-manager/place-manager.component";
 import {LocationManagerComponent} from "./admin/location-manager/location-manager.component";
 import {HumanComponent} from "./pages/human/human.component";
+import {ProfileEditComponent} from "./pages/profile-edit/profile-edit.component";
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'human-manager', component: HumanManagerComponent},
   {path: 'place-manager', component: PlaceManagerComponent},
   {path: 'location-manager', component: LocationManagerComponent},
+  {path: 'edit', component: ProfileEditComponent},
   {path: ':username', component: HumanComponent},
 ];
 

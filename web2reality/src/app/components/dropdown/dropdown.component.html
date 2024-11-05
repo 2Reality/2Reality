@@ -1,0 +1,10 @@
+<div class="dropdown">
+  <button class="btn btn-sm btn-outline-dark dropdown-toggle" (click)="toggleDropdown()">
+    {{title}}
+  </button>
+  <ul *ngIf="isDropdownOpen" class="dropdown-menu">
+    <li *ngFor="let option of options">
+      <a class="dropdown-item" (click)="option.action()">{{ option.name }}</a>
+    </li>
+  </ul>
+</div>

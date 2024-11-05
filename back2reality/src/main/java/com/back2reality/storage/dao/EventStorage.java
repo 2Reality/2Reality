@@ -41,6 +41,11 @@ public class EventStorage implements CandidateStorage<EventItem>, EntityStorage<
   }
 
   @Override
+  public void update(EventForm eventForm) {
+
+  }
+
+  @Override
   public void delete(long id) {
     eventRepository.deleteById(id);
     logger.info("event {} deleted", id);

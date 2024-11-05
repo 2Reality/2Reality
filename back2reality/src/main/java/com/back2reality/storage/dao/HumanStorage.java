@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author FLIGHT
@@ -31,7 +32,7 @@ public class HumanStorage implements CandidateStorage<HumanItem>, EntityStorage<
 
   @Override
   public List<HumanItem> getCandidates(RecommenderContext recommenderContext) {
-    return StreamUtils.toStream(humanRepository.findAll())
+    return StreamUtils.toStream(humanRepository.findAllWithImages())
       .map(human -> humanMapper.toHumanItem(human, recommenderContext))
       .toList();
   }
@@ -40,6 +41,15 @@ public class HumanStorage implements CandidateStorage<HumanItem>, EntityStorage<
   public void create(HumanForm humanForm) {
     humanRepository.save(humanMapper.toHuman(humanForm));
     logger.info("event {} saved", humanForm);
+  }
+
+  @Override
+  public void update(HumanForm humanForm) {
+    Optional<Human> humanO = humanRepository.findById(humanForm.id());
+    if (humanO.isPresent()) {
+      Human human = humanMapper.update(humanO.get(), humanForm);
+      humanRepository.save(human);
+    }
   }
 
   @Override

@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import org.locationtech.jts.geom.Point;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -33,12 +33,12 @@ public class Human {
 
   private Sex sex;
 
-  private LocalDateTime birthDate;
+  private LocalDate birthDate;
 
   private String geo;
 
-  @OneToMany(mappedBy = "human", fetch = FetchType.EAGER)
   @JsonIgnoreProperties(value = "human", allowGetters = true)
+  @OneToMany(mappedBy = "human", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<Image> images;
 
   @JsonSerialize(using = PointToJsonSerializer.class)
@@ -53,7 +53,7 @@ public class Human {
                String nickname,
                String description,
                Sex sex,
-               LocalDateTime birthDate,
+               LocalDate birthDate,
                String geo,
                Point location)
   {
@@ -98,20 +98,20 @@ public class Human {
     this.description = description;
   }
 
+  public LocalDate getBirthDate() {
+    return birthDate;
+  }
+
+  public void setBirthDate(LocalDate birthDate) {
+    this.birthDate = birthDate;
+  }
+
   public Sex getSex() {
     return sex;
   }
 
   public void setSex(Sex sex) {
     this.sex = sex;
-  }
-
-  public LocalDateTime getBirthDate() {
-    return birthDate;
-  }
-
-  public void setBirthDate(LocalDateTime birthDate) {
-    this.birthDate = birthDate;
   }
 
   public String getGeo() {

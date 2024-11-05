@@ -25,14 +25,20 @@
       </button>
     </div>
 
-    <div *ngIf="this.authenticated" class="col-md-3 text-end">
-      <span class="me-2">{{this.getCurrentUser()}}</span>
-      <button
-        *ngIf="this.authenticated"
-        (click)="signOut()"
-        class="btn btn-sm btn-outline-dark">
-        Sign-out
-      </button>
-    </div>
+<!--    <div *ngIf="this.authenticated" class="col-md-3 text-end">-->
+<!--      <span class="me-2">{{this.getCurrentUser()}}</span>-->
+<!--      <button-->
+<!--        *ngIf="this.authenticated"-->
+<!--        (click)="signOut()"-->
+<!--        class="btn btn-sm btn-outline-dark">-->
+<!--        Sign-out-->
+<!--      </button>-->
+<!--    </div>-->
+
+    <app-dropdown *ngIf="this.authenticated" class="col-md-3 text-end"
+      [title]="this.getCurrentUser()"
+      [options]="this.getOptions()"
+    ></app-dropdown>
+
   </header>
 </div>

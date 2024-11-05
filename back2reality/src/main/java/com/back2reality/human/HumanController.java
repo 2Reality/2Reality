@@ -52,6 +52,12 @@ public class HumanController {
     return humanForm;
   }
 
+  @PostMapping( "/update")
+  public HumanForm update(@RequestBody HumanForm humanForm) {
+    humanStorage.update(humanForm);
+    return humanForm;
+  }
+
   @DeleteMapping("/delete/{id}")
   public ResponseEntity<TRResponse> delete(@PathVariable long id) {
     humanStorage.delete(id);

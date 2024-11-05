@@ -1,0 +1,98 @@
+<app-header>
+</app-header>
+<div *ngIf="human" class="mt-3 container">
+  <main>
+    <form [formGroup]="form" (ngSubmit)="saveUpdates()" enctype="multipart/form-data">
+      <div class="row g-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+
+        </div>
+
+        <div class="col-md-7 col-lg-8">
+
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label">Profile image <span class="ms-5 text-success" *ngIf="imageMessage">{{imageMessage}}</span></label>
+              <input type="file" formControlName="image"
+                     class="form-control" placeholder="choose a new profile picture"
+                     (change)="onImageUpload($event)">
+            </div>
+
+            <div class="col-6">
+              <label for="fullname" class="form-label">Full Name</label>
+              <input type="text" formControlName="fullname"
+                     class="form-control" id="fullname" [value]="human.fullname">
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Nickname<span
+                *ngIf="nickname.errors?.minlength && nickname.touched"
+                class="ms-5 text-danger"
+              >The minimum username field length is 5. Now {{nickname.value.length}}</span></label>
+              <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <input [readOnly]="true" type="text" formControlName="nickname"
+                       class="form-control" placeholder="Nickname">
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Email <span
+                class="text-muted">(Optional)</span></label>
+              <input formControlName="email"
+                     type="email" class="form-control" placeholder="you@example.com">
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Sex <span
+                class="text-muted">(Optional)</span></label>
+              <input formControlName="sex"
+                     type="text" class="form-control" placeholder="you@example.com">
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Date of birth <span
+                class="text-muted">(Optional)</span></label>
+              <input formControlName="birthDate"
+                     type="date" class="form-control" placeholder="dd-mm-yyyy">
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Current location
+                <span class="text-muted">(Optional)</span></label>
+              <input formControlName="geo"
+                     type="text" class="form-control" placeholder="Russia, Saint-P">
+            </div>
+
+            <div class="col-6">
+              <label for="longitude" class="form-label">Longitude</label>
+              <input type="text" formControlName="longitude"
+                     class="form-control" id="longitude" [value]="human.longitude">
+            </div>
+
+            <div class="col-6">
+              <label for="latitude" class="form-label">Latitude</label>
+              <input type="text" formControlName="latitude"
+                     class="form-control" id="latitude" [value]="human.latitude">
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Description
+                <span class="text-muted">(Optional)</span></label>
+              <textarea formControlName="description"
+                        type="text" class="form-control" rows="3" placeholder="..."
+                        maxlength="255">
+              </textarea>
+            </div>
+
+          </div>
+
+          <hr class="my-4">
+          <button class="w-100 btn btn-primary btn-lg" [disabled]="!form.valid" type="submit">Save profile information</button>
+        </div>
+      </div>
+    </form>
+  </main>
+</div>
+
+

@@ -1,18 +1,19 @@
 package com.back2reality.human;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * @author FLIGHT
  */
 public record HumanForm(
-        String fullname,
-        String nickname,
-        String description,
-        Sex sex,
-        LocalDateTime birthDate,
-        String geo,
-        double longitude,
-        double latitude
+  long id,
+  String fullname,
+  String nickname,
+  String description,
+  Sex sex,
+  LocalDate birthDate,
+  String geo,
+  double longitude,
+  double latitude
 ) {
 }

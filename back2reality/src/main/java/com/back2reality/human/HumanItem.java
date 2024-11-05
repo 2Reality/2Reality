@@ -4,7 +4,7 @@ import com.back2reality.image.ImageItem;
 import com.back2reality.recommender.item.WithDistance;
 import com.back2reality.recommender.item.WithScore;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * @author FLIGHT
@@ -15,9 +15,11 @@ public record HumanItem(
         String nickname,
         String description,
         Sex sex,
-        LocalDateTime birthDate,
+        LocalDate birthDate,
         ImageItem image,
         String geo,
+        double longitude,
+        double latitude,
         double distance,
         double score
 ) implements WithScore, WithDistance {

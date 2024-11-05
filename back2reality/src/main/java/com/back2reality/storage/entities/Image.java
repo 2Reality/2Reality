@@ -15,12 +15,14 @@ public class Image {
   @SequenceGenerator(name = "image", sequenceName = "s_image", allocationSize = 1)
   private long id;
   private String name;
+
   @Lob
+  @Column(columnDefinition="bytea")
   private byte[] content;
 
   private LocalDateTime uploadDate;
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne
   @JoinColumn(name = "human_id")
   private Human human;
 

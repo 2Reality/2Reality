@@ -1,0 +1,50 @@
+name: Notify Telegram on PR Merge to Master
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Flight Logger
+        if: ${{ github.event.pull_request.merged && github.event.pull_request.user.login == 'FLlGHT' }}
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.FLIGHT_LOGGER_TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.FLIGHT_LOGGER_CHAT_ID }}
+          LOCATION: ${{ secrets.CURRENT_LOCATION }}
+        run: |
+          declare -A USER_MAP
+          USER_MAP["FLlGHT"]="Michael Fedorenko (@FLlGHT)"
+
+          AUTHOR_NICKNAME="${{ github.event.pull_request.user.login }}"
+          TELEGRAM_USERNAME=${USER_MAP[$AUTHOR_NICKNAME]}
+          COMMIT_MESSAGE="${{ github.event.pull_request.title }}"
+          REPO_NAME="${{ github.repository }}"
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+
+          PR_URL="https://github.com/${{ github.repository }}/pull/${PR_NUMBER}"
+
+          ADDITIONS="${{ github.event.pull_request.additions }}"
+          DELETIONS="${{ github.event.pull_request.deletions }}"
+          CHANGED_FILES="${{ github.event.pull_request.changed_files }}"
+          SHA="${{ github.event.pull_request.merge_commit_sha }}"
+
+          MESSAGE="A pull request ${PR_URL}
+          has been merged into master in ${REPO_NAME}.
+
+          Commit: ${COMMIT_MESSAGE}
+          Author: ${TELEGRAM_USERNAME}
+          Location: ${LOCATION}"
+          CHANGED FILES: ${CHANGED_FILES} (+ ${ADDITIONS} - ${DELETIONS})
+          COMMIT SHA: ${SHA}
+
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+            -d chat_id="${TELEGRAM_CHAT_ID}" \
+            -d text="${MESSAGE}"
+

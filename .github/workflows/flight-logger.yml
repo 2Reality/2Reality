@@ -41,8 +41,8 @@ jobs:
           Commit: ${COMMIT_MESSAGE}
           Author: ${TELEGRAM_USERNAME}
           Location: ${LOCATION}
-          CHANGED FILES: ${CHANGED_FILES} (+ ${ADDITIONS} - ${DELETIONS})
-          COMMIT SHA: ${SHA}
+          Changed files: ${CHANGED_FILES} (%2B ${ADDITIONS} - ${DELETIONS})
+          Commit sha: ${SHA}
           "
 
           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \

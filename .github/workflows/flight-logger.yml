@@ -35,17 +35,23 @@ jobs:
           CHANGED_FILES="${{ github.event.pull_request.changed_files }}"
           SHA="${{ github.event.pull_request.merge_commit_sha }}"
 
-          MESSAGE="A pull request ${PR_URL}
-          has been merged into master in ${REPO_NAME}.
+          BODY="${{ github.event.pull_request.body }}"
+          BRANCH="${{ github.event.pull_request.head.ref }}"
 
-          Commit: ${COMMIT_MESSAGE}
-          Author: ${TELEGRAM_USERNAME}
+          MESSAGE="Pull request ${PR_URL}
+          has been merged from \"${BRANCH}\" into \"master\"
+          in \"${REPO_NAME}\"
+
+          Commit title: ${COMMIT_MESSAGE}
+          <${SHA}>
+
+          By: ${TELEGRAM_USERNAME}
           Location: ${LOCATION}
-          Changed files: ${CHANGED_FILES} (%2B ${ADDITIONS} - ${DELETIONS})
-          Commit sha: ${SHA}
+
+          Changed files: ${CHANGED_FILES} (diff: %2B${ADDITIONS} -${DELETIONS})
           "
 
           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
             -d chat_id="${TELEGRAM_CHAT_ID}" \
-            -d text="${MESSAGE}"
+            -d text="$MESSAGE"
 

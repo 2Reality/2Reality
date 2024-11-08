@@ -5,5 +5,5 @@ package com.back2reality.image;
  */
 public record ImageItem(long id, byte[] content) {
 
-  public static ImageItem empty = new ImageItem(0, new byte[]{});
+  public static ImageItem empty = new ImageItem(0, null);
 }

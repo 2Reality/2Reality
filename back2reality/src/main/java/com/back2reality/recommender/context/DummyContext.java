@@ -20,11 +20,6 @@ public class DummyContext implements RecommenderContext {
   private double latitude;
 
   @Override
-  public RecommenderUser getUser() {
-    return new RecommenderUser();
-  }
-
-  @Override
   public Point location() {
     GeometryFactory geometryFactory = new GeometryFactory();
     return geometryFactory.createPoint(new Coordinate(longitude, latitude));

@@ -11,16 +11,8 @@ import java.util.zip.Inflater;
  */
 public class ImageCompressor {
 
-  private final Deflater deflater;
-
-  private final Inflater inflater;
-
-  public ImageCompressor(Deflater deflater, Inflater inflater) {
-    this.deflater = deflater;
-    this.inflater = inflater;
-  }
-
   public byte[] compressBytes(byte[] data) {
+    Deflater deflater = new Deflater();
     deflater.setInput(data);
     deflater.finish();
 
@@ -40,6 +32,7 @@ public class ImageCompressor {
   }
 
   public byte[] decompressBytes(byte[] data) {
+    Inflater inflater = new Inflater();
     inflater.setInput(data);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
     byte[] buffer = new byte[1024];

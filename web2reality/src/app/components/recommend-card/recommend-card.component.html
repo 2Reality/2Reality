@@ -1,18 +1,9 @@
 <div class="card shadow-sm">
-  <svg *ngIf="!imageIsPresent()" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-       role="img" aria-label="Placeholder: 2R" preserveAspectRatio="xMidYMid slice" focusable="false">
-    <title>Placeholder</title>
-    <rect width="100%" height="100%" fill="#55595c"></rect>
-    <text x="40%" y="50%" fill="#eceeef">{{'score: ' + recommendation.score}}</text>
-  </svg>
 
-  <svg *ngIf="imageIsPresent()" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-       role="img" aria-label="Placeholder: 2R" preserveAspectRatio="xMidYMid slice" focusable="false">
-    <title>Placeholder</title>
-    <rect width="100%" height="100%" fill="#55595c"></rect>
-    <text x="40%" y="50%" fill="#eceeef">{{'image is present'}}</text>
-  </svg>
-
+  <app-profile-image
+    [base64]="recommendation.image?.content"
+    [score]="recommendation.score"
+  ></app-profile-image>
   <div class="card-body">
     <div>
       <p class="card-text">{{title()}}</p>

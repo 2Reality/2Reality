@@ -2,10 +2,11 @@ package com.back2reality.place;
 
 import com.back2reality.network.TRResponse;
 import com.back2reality.recommender.context.ContextExtractionFactory;
-import com.back2reality.recommender.context.DummyContext;
 import com.back2reality.recommender.context.RecommenderContext;
 import com.back2reality.storage.dao.PlaceStorage;
+import com.back2reality.storage.entities.User;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,8 +36,8 @@ public class PlaceController {
   }
 
   @GetMapping("/recommend")
-  public List<PlaceItem> getEvents() {
-    RecommenderContext recommenderContext = contextExtractionFactory.extract();
+  public List<PlaceItem> getEvents(@AuthenticationPrincipal User user) {
+    RecommenderContext recommenderContext = contextExtractionFactory.extract(user);
     return placeRecommender.recommend(recommenderContext);
   }
 

@@ -16,7 +16,6 @@ public class Image {
   private long id;
   private String name;
 
-  @Lob
   @Column(columnDefinition="bytea")
   private byte[] content;
 

@@ -5,7 +5,6 @@ import org.locationtech.jts.geom.Point;
 /**
  * @author FLIGHT
  */
-public interface RecommenderContext {
-  Point location();
-  int limit();
+public record SimpleRecommenderContext(Point location, int limit) implements RecommenderContext {
+
 }

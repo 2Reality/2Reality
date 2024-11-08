@@ -38,11 +38,9 @@ jobs:
           BODY="${{ github.event.pull_request.body }}"
           BRANCH="${{ github.event.pull_request.head.ref }}"
 
-          MESSAGE="Pull request ${PR_URL}
-          has been merged from \"${BRANCH}\" into \"master\"
-          in \"${REPO_NAME}\"
+          MESSAGE="Pull request ${PR_URL} has been merged from \"${BRANCH}\" into \"master\" in \"${REPO_NAME}\"
 
-          Commit title: ${COMMIT_MESSAGE}
+          Commit: ${COMMIT_MESSAGE}
           <${SHA}>
 
           By: ${TELEGRAM_USERNAME}

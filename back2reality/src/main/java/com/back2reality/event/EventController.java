@@ -4,7 +4,9 @@ import com.back2reality.network.TRResponse;
 import com.back2reality.recommender.context.ContextExtractionFactory;
 import com.back2reality.recommender.context.RecommenderContext;
 import com.back2reality.storage.dao.EventStorage;
+import com.back2reality.storage.entities.User;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,8 +36,8 @@ public class EventController {
   }
 
   @GetMapping("/recommend")
-  public List<EventItem> getEvents() {
-    RecommenderContext recommenderContext = contextExtractionFactory.extract();
+  public List<EventItem> getEvents(@AuthenticationPrincipal User user) {
+    RecommenderContext recommenderContext = contextExtractionFactory.extract(user);
     return eventRecommender.recommend(recommenderContext);
   }
 

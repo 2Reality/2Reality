@@ -1,8 +1,9 @@
 package com.back2reality.common;
 
 import com.back2reality.recommender.context.ContextExtractionFactory;
-import com.back2reality.recommender.context.DummyContext;
-import com.back2reality.recommender.context.RecommenderContext;
+import com.back2reality.recommender.context.SimpleRecommenderContext;
+import com.back2reality.storage.entities.Human;
+import org.locationtech.jts.geom.Point;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,13 +14,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CommonContextConfiguration {
 
-    @Bean
-    public RecommenderContext recommenderContext() {
-        return new DummyContext();
-    }
-
-    @Bean
-    public ContextExtractionFactory contextExtractionFactory(RecommenderContext recommenderContext) {
-        return () -> recommenderContext;
-    }
+  @Bean
+  public ContextExtractionFactory contextExtractionFactory() {
+    return user -> {
+      Human human = user.getHuman();
+      Point location = human.getLocation();
+      return new SimpleRecommenderContext(location, 32);
+    };
+  }
 }

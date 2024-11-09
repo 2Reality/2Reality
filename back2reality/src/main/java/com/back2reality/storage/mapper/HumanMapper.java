@@ -9,6 +9,7 @@ import com.back2reality.recommender.context.RecommenderContext;
 import com.back2reality.storage.entities.Human;
 import com.back2reality.storage.entities.Image;
 import com.back2reality.utils.MathUtils;
+import com.back2reality.utils.RandomUtils;
 import org.locationtech.jts.geom.Point;
 
 import java.util.List;
@@ -28,10 +29,7 @@ public class HumanMapper {
   }
 
   public HumanItem toHumanItem(Human human, RecommenderContext recommenderContext) {
-    double distance = MathUtils.round(
-      human.getLocation().distance(recommenderContext.location()) * 100, 2
-    );
-
+    double distance = toDistance(human.getLocation(), recommenderContext.location());
     ImageItem image = toImage(human.getImages());
 
     return new HumanItem(
@@ -87,11 +85,17 @@ public class HumanMapper {
     if (images == null || images.isEmpty())
       return ImageItem.empty;
 
-    // testing mock
-    Image image = images.get(0);
+    int imageIndex = RandomUtils.generateInteger(images.size());
+    Image image = images.get(imageIndex);
     return new ImageItem(
       image.getId(),
       imageCompressor.decompressBytes(image.getContent())
+    );
+  }
+
+  private double toDistance(Point itemLocation, Point contextLocation) {
+    return MathUtils.round(
+      itemLocation.distance(contextLocation) * 100, 2
     );
   }
 }

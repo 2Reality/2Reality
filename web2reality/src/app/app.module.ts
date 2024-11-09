@@ -25,6 +25,7 @@ import { LocationManagerComponent } from './admin/location-manager/location-mana
 import { HumanComponent } from './pages/human/human.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
+import { ProfileImageComponent } from './components/profile-image/profile-image.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ProfileEditComponent } from './pages/profile-edit/profile-edit.componen
     HumanComponent,
     DropdownComponent,
     ProfileEditComponent,
+    ProfileImageComponent,
   ],
     imports: [
         BrowserModule,

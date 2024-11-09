@@ -63,11 +63,4 @@ public class HumanStorage implements CandidateStorage<HumanItem>, EntityStorage<
       .map(human -> humanMapper.toHumanItem(human, context))
       .orElseThrow(IllegalArgumentException::new);
   }
-
-  public void addImage(Human human, Image image) {
-    List<Image> images = human.getImages();
-    images.add(image);
-    human.setImages(images);
-    humanRepository.save(human);
-  }
 }
